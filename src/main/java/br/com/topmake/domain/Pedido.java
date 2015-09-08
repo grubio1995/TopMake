@@ -1,9 +1,12 @@
 package br.com.topmake.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -11,6 +14,17 @@ import javax.persistence.TemporalType;
 @Entity
 public class Pedido extends GenericDomain {
 	
+	@Column(nullable = false, precision = 6, scale = 2)
+	private BigDecimal valorTotal;
+
+	public BigDecimal getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataPedido;
@@ -18,8 +32,32 @@ public class Pedido extends GenericDomain {
 	@Column(length = 20, nullable = false)
 	private String status;
 	
+	@JoinColumn(nullable = false)
 	@ManyToOne
-	private Cliente cliente;
+	private Usuario usuario;
+	
+	@JoinColumn(nullable = false)
+	@OneToOne
+	private Pagamento pagamento;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataVenda;
+	
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+
+	public Date getDataVenda() {
+		return dataVenda;
+	}
+
+	public void setDataVenda(Date dataVenda) {
+		this.dataVenda = dataVenda;
+	}
 
 	public Date getDataPedido() {
 		return dataPedido;
@@ -37,14 +75,13 @@ public class Pedido extends GenericDomain {
 		this.status = status;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
-	
 	
 
 }

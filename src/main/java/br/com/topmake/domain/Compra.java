@@ -1,11 +1,10 @@
 package br.com.topmake.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -17,7 +16,23 @@ public class Compra extends GenericDomain {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCompra;
 	
-	@JoinColumn(nullable = false)
-	@ManyToOne
-	private Produto produto;
+	@Column(nullable = false, precision = 6, scale = 2)
+	private BigDecimal precoTotal;
+
+	public Date getDataCompra() {
+		return dataCompra;
+	}
+
+	public void setDataCompra(Date dataCompra) {
+		this.dataCompra = dataCompra;
+	}
+
+	public BigDecimal getPrecoTotal() {
+		return precoTotal;
+	}
+
+	public void setPrecoTotal(BigDecimal precoTotal) {
+		this.precoTotal = precoTotal;
+	}
+
 }

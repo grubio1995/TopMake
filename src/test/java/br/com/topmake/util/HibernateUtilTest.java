@@ -12,4 +12,5 @@ public class HibernateUtilTest {
 		sessao.close();
 		HibernateUtil.getFabricaDeSessoes().close();
 	}
+	
 }

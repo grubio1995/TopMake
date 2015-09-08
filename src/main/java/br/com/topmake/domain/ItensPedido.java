@@ -12,14 +12,14 @@ public class ItensPedido extends GenericDomain {
 
 	@Column(nullable = false)
 	private Short quantidadeProduto;
-	
+
 	@Column(nullable = false, precision = 6, scale = 2)
 	private BigDecimal valorProduto;
 
 	@JoinColumn(nullable = false)
 	@ManyToOne
 	private Pedido pedido;
-	
+
 	@JoinColumn(nullable = false)
 	@ManyToOne
 	private Produto produto;

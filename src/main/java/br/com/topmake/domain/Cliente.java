@@ -10,7 +10,6 @@ import javax.persistence.TemporalType;
 
 @SuppressWarnings("serial")
 @Entity
-
 public class Cliente extends GenericDomain {
 
 	@Column(length = 20, nullable = false)
@@ -50,7 +49,7 @@ public class Cliente extends GenericDomain {
 	@JoinColumn(nullable = false)
 	@OneToOne
 	private Usuario usuario;
-
+	
 	public String getBairro() {
 		return bairro;
 	}

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
-
 	<session-factory>
 
 		<!-- Configurações de Conexão com o Banco de Dados -->
@@ -31,20 +29,18 @@
 
 		<!-- Cria as tabelas do banco de dados -->
 		<property name="hbm2ddl.auto">create</property>
-		
+
 		<!-- Mapeamento das entidades -->
-		<mapping class= "br.com.topmake.domain.Categoria"/>
-		<mapping class= "br.com.topmake.domain.Linha"/>
+		<mapping class = "br.com.topmake.domain.Categoria"/>
+		<mapping class = "br.com.topmake.domain.Linha"/>
 		<mapping class = "br.com.topmake.domain.Produto"/>
 		<mapping class = "br.com.topmake.domain.Usuario"/>
 		<mapping class = "br.com.topmake.domain.Cliente"/>
 		<mapping class = "br.com.topmake.domain.Pedido"/>
 		<mapping class = "br.com.topmake.domain.ItensPedido"/>
 		<mapping class = "br.com.topmake.domain.Compra"/>
-		<mapping class = "br.com.topmake.domain.ItensCompra"/>
-		<mapping class = "br.com.topmake.domain.Venda"/>
+		<mapping class = "br.com.topmake.domain.ItensCompra"/>		
 		<mapping class = "br.com.topmake.domain.Pagamento"/>
-			
-	</session-factory>
 
+	</session-factory>
 </hibernate-configuration>

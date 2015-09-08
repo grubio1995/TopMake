@@ -1,6 +1,5 @@
 package br.com.topmake.domain;
 
-import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +8,8 @@ import javax.persistence.Entity;
 @Entity
 public class Pagamento extends GenericDomain{
 
+	
+	
 	@Column(nullable = false, length = 20)
 	private String metodo;
 	
@@ -20,9 +21,6 @@ public class Pagamento extends GenericDomain{
 	
 	@Column(nullable = false, length = 20)
 	private String numeroCartao;
-	
-	@Column(nullable = false, precision = 6, scale = 2)
-	private BigDecimal valorPedido; 
 	
 	@Column(nullable = false, length = 20)
 	private String numeroConta;
@@ -60,14 +58,6 @@ public class Pagamento extends GenericDomain{
 
 	public void setNumeroCartao(String numeroCartao) {
 		this.numeroCartao = numeroCartao;
-	}
-
-	public BigDecimal getValorPedido() {
-		return valorPedido;
-	}
-
-	public void setValorPedido(BigDecimal valorPedido) {
-		this.valorPedido = valorPedido;
 	}
 
 	public String getNumeroConta() {
