@@ -34,7 +34,7 @@ public class Pedido extends GenericDomain {
 	
 	@JoinColumn(nullable = false)
 	@ManyToOne
-	private Usuario usuario;
+	private Cliente cliente;
 	
 	@JoinColumn(nullable = false)
 	@OneToOne
@@ -75,12 +75,12 @@ public class Pedido extends GenericDomain {
 		this.status = status;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Cliente getCliente() {
+		return this.cliente;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 

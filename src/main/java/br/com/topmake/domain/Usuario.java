@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 
 @SuppressWarnings("serial")
 @Entity
-public class Usuario extends GenericDomain  {
+public class Usuario extends GenericDomain {
 	
 	@Column(length = 100,nullable = false)
 	private String nome;

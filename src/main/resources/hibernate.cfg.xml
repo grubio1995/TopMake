@@ -28,7 +28,7 @@
 		<property name="show_sql">true</property>
 
 		<!-- Cria as tabelas do banco de dados -->
-		<property name="hbm2ddl.auto">create</property>
+		<property name="hbm2ddl.auto">validate</property>
 
 		<!-- Mapeamento das entidades -->
 		<mapping class = "br.com.topmake.domain.Categoria"/>
@@ -41,6 +41,7 @@
 		<mapping class = "br.com.topmake.domain.Compra"/>
 		<mapping class = "br.com.topmake.domain.ItensCompra"/>		
 		<mapping class = "br.com.topmake.domain.Pagamento"/>
+		<mapping class = "br.com.topmake.domain.Revendedora"/>
 
 	</session-factory>
 </hibernate-configuration>
