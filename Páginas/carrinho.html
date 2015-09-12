@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>TopMake Cosmetics</title>
+	
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/shop-homepage.css" rel="stylesheet">
+	<link href="css/topmake-cosmetics.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	
+	<script src="js/topmake-cosmetics.js" type="text/javascript"></script>
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>	
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top navbar-topmake" role="navigation">
+        <div class="container">
+		
+            <div class="navbar-header">
+                <a class="navbar-brand topmake-link" href="index.html">TopMake Cosmetics</a>
+            </div>
+			
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="carrinho.html" class="topmake-link">Carrinho de compras <i class="fa fa-shopping-cart"></i></a>						
+                    </li>
+                </ul>			
+                <ul class="nav navbar-nav bem-vindo">
+                    <li>
+                        <a>Bem vindo, usuário!</a>
+                    </li>
+                    <li>
+						<a href="login.html" class="topmake-link">Sair <i class="fa fa-sign-out"></i></a>
+                    </li>
+                </ul>
+            </div>
+			
+        </div>		
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">Carrinho de compras</p>
+                <div class="list-group">
+					<div class="list-group-item text-center categorias">
+						<b>Navegação</b>
+					</div>
+					<a href="index.html" class="list-group-item">Página Inicial</a>
+                    <a href="index.html" class="list-group-item">Voltar ao pedido</a>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="row">
+				
+					<table class="table table-bordered tabela-carrinho">
+						<thead>
+							<tr>
+								<th>Produto</th>
+								<th>Preço</th>
+								<th>Quantidade</th>
+								<th>Sub-total</th>
+							</tr>
+						</thead>					
+						<tbody>
+							<tr>
+								<td class="td-produto">Batom vermelho</td>
+								<td class="td-valor">R$ 37,00</td>
+								<td class="td-qtd">2</td>
+								<td class="td-subtotal">R$ 74,00</td>
+							</tr>
+							<tr>
+								<td class="td-produto">Desodorante masculino</td>
+								<td class="td-valor">R$ 53,00</td>
+								<td class="td-qtd">1</td>
+								<td class="td-subtotal">R$ 53,00</td>
+							</tr>
+							<tr>
+								<td class="td-produto">Creme masculino</td>
+								<td class="td-valor">R$ 49,00</td>
+								<td class="td-qtd">2</td>
+								<td class="td-subtotal">R$ 98,00</td>
+							</tr>
+							<tr>
+								<td class="td-produto">Base líquida</td>
+								<td class="td-valor">R$ 57,00</td>
+								<td class="td-qtd">3</td>
+								<td class="td-subtotal">R$ 171,00</td>
+							</tr>
+							<tr>
+								<td class="td-total" colspan="3">Valor total:</td>
+								<td class="td-valor-total">R$ 396,00</td>
+							</tr>							
+						</tbody>
+					</table>
+
+                    <div class="col-md-12">
+						<div>
+							<div>
+								<h4>Cartão de Crédito <i class="fa fa-credit-card"></i></h4>
+							</div>
+							<div class="col-md-9">
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="radio">
+											<label>
+												<input type="radio" name="pagamento" value="1">
+												<span class="lbl">
+													<i class="fa fa-cc-visa"></i> Visa
+												</span>
+											</label>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="radio">
+											<label>
+												<input type="radio" name="pagamento" value="2">
+												<span class="lbl">
+													<i class="fa fa-cc-mastercard"></i> Mastercard
+												</span>
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-md-12 cartao-dados well">
+							<div>
+								<div class="col-sm-5">
+									<div>
+										<span>
+											Digite os números do cartão:
+										</span>
+									</div>
+								</div>
+								<div class="col-sm-7">
+									<div>
+										<input size="40" maxlength="12" type="text" name="dados-cartao-num">
+									</div>
+								</div>							
+							</div>
+							<div>
+								<div class="col-sm-5">
+									<div>
+										<span>
+											Digite o nome do titular do cartão:
+										</span>
+									</div>
+								</div>
+								<div class="col-sm-7">
+									<div>
+										<input size="40" maxlength="50" type="text" name="dados-cartao-nome">
+									</div>
+								</div>
+							</div>
+							<div>
+								<div class="col-sm-5">
+									<div>
+										<span>
+											Digite o código de segurança do cartão:
+										</span>
+									</div>
+								</div>
+								<div class="col-sm-7">
+									<div>
+										<input size="8" maxlength="4" type="text" name="dados-cartao-seg">
+									</div>
+								</div>
+							</div>
+							<div>
+								<div class="col-sm-5">
+									<div>
+										<span>
+											Selecione o mês e ano de validade do cartão:
+										</span>
+									</div>
+								</div>
+								<div class="col-sm-7">
+									<div>
+										<select name="dados-cartao-mes">
+											<option value="01">01</option>
+											<option value="02">02</option>
+											<option value="03">03</option>
+											<option value="04">04</option>
+											<option value="05">05</option>
+											<option value="06">06</option>
+											<option value="07">07</option>
+											<option value="08">08</option>
+											<option value="09">09</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+										</select>
+										<span>/</span>
+										<select name="dados-cartao-ano">
+											<option value="2015">2015</option>
+											<option value="2016">2016</option>
+											<option value="2017">2017</option>
+											<option value="2018">2018</option>
+											<option value="2019">2019</option>
+											<option value="2020">2020</option>
+											<option value="2021">2021</option>
+											<option value="2022">2022</option>
+											<option value="2023">2023</option>
+										</select>
+									</div>
+								</div>
+							</div>	
+						</div>
+					</div>
+					
+					<div>					
+						<div class="col-md-9">
+							<div>
+								<div>
+									<h4>Boleto bancário <i class="fa fa-file-text-o"></i></h4>
+								</div>
+								<div class="col-md-9">
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="radio">
+												<label>
+													<input type="radio" name="pagamento" value="3">
+													<span class="lbl">
+														<i class="fa fa-file-o"></i> Gerar boleto
+													</span>
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>							
+							</div>
+
+						</div>
+					</div>
+				
+                </div>
+				
+				<div class="row">
+                    <div class="text-right">
+						<a class="btn btn-lg btn-success botao-topmake" href="javascript:finalizarPedido();">Finalizar compra <i class="fa fa-shopping-cart"></i></a>
+						<div class="pull-left">
+							<a class="btn btn-lg btn-info botao-topmake" href="javascript:voltar();"><i class="fa fa-arrow-left"></i> Voltar</a>
+						</div>
+                    </div>
+				</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <hr>
+		
+        <footer>
+            <div class="row">
+                <div class="col-lg-12 rodape">
+                    <p>Copyright &copy; TopMake Cosmetics 2015</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
