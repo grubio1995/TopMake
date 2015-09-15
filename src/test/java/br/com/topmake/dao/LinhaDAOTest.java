@@ -81,7 +81,7 @@ public class LinhaDAOTest {
 		else {			
 			linha.setDescricao(linhaDescricao);
 			linhaDAO.editar(linha);
-			System.out.println("Linha removida com sucesso!");
+			System.out.println("Linha editada com sucesso!");
 		}
 	}
 }
