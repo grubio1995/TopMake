@@ -10,7 +10,7 @@ public class Usuario extends GenericDomain {
 	@Column(length = 100,nullable = false)
 	private String nome;
 	
-	@Column(length = 80, nullable = false)
+	@Column(length = 50, nullable = false)
 	private String email;
 	
 	@Column(length = 20, nullable = false)
@@ -18,14 +18,14 @@ public class Usuario extends GenericDomain {
 	
 	@Column(length = 32, nullable = false)
 	private String senha;
-
+	
 	@Column(nullable = false)
 	private char tipoUsuario;
-
+	
 	public String getNome() {
 		return nome;
 	}
-
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}

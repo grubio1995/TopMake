@@ -7,9 +7,9 @@ import javax.persistence.Entity;
 @Entity
 public class Categoria extends GenericDomain {
 	
-	@Column(length =100, nullable = false) 
+	@Column(length = 100, nullable = false)
 	private String descricao;
-
+	
 	public String getDescricao() {
 		return descricao;
 	}

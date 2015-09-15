@@ -14,23 +14,16 @@ import javax.persistence.TemporalType;
 @Entity
 public class Pedido extends GenericDomain {
 	
-	@Column(nullable = false, precision = 6, scale = 2)
+	@Column(nullable = false, precision = 7, scale = 2)
 	private BigDecimal valorTotal;
-
-	public BigDecimal getValorTotal() {
-		return valorTotal;
-	}
-
-	public void setValorTotal(BigDecimal valorTotal) {
-		this.valorTotal = valorTotal;
-	}
-
+	
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataPedido;
 	
-	@Column(length = 20, nullable = false)
-	private String status;
+	@JoinColumn(nullable = false)
+	@ManyToOne
+	private Status status;
 	
 	@JoinColumn(nullable = false)
 	@ManyToOne
@@ -42,7 +35,39 @@ public class Pedido extends GenericDomain {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataVenda;
-	
+
+	public BigDecimal getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
+	public Date getDataPedido() {
+		return dataPedido;
+	}
+
+	public void setDataPedido(Date dataPedido) {
+		this.dataPedido = dataPedido;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 	public Pagamento getPagamento() {
 		return pagamento;
 	}
@@ -58,30 +83,5 @@ public class Pedido extends GenericDomain {
 	public void setDataVenda(Date dataVenda) {
 		this.dataVenda = dataVenda;
 	}
-
-	public Date getDataPedido() {
-		return dataPedido;
-	}
-
-	public void setDataPedido(Date dataPedido) {
-		this.dataPedido = dataPedido;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public Cliente getCliente() {
-		return this.cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-	
 
 }

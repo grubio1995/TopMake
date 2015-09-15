@@ -8,13 +8,13 @@ import javax.persistence.Entity;
 public class Linha extends GenericDomain {
 
 	@Column(length = 100, nullable = false)
-	private String classificacao;
-
-	public String getClassificacao() {
-		return classificacao;
+	private String descricao;
+	
+	public String getDescricao() {
+		return descricao;
 	}
-
-	public void setClassificacao(String classificacao) {
-		this.classificacao = classificacao;
+	
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 }

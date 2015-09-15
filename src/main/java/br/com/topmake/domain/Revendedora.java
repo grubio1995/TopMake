@@ -12,12 +12,12 @@ public class Revendedora extends GenericDomain {
 	@OneToOne
 	private Usuario usuario;
 
-	public Usuario getRevendedora() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
-
-	public void setRevendedora(Usuario usuario) {
+	
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
+	
 }

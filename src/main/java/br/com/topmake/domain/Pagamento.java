@@ -6,9 +6,7 @@ import javax.persistence.Entity;
 
 @SuppressWarnings("serial")
 @Entity
-public class Pagamento extends GenericDomain{
-
-	
+public class Pagamento extends GenericDomain{	
 	
 	@Column(nullable = false, length = 20)
 	private String metodo;
@@ -19,7 +17,7 @@ public class Pagamento extends GenericDomain{
 	@Column(nullable = false, length = 100)
 	private String nomeTitular;
 	
-	@Column(nullable = false, length = 20)
+	@Column(nullable = false, length = 16)
 	private String numeroCartao;
 	
 	@Column(nullable = false, length = 20)
@@ -55,7 +53,7 @@ public class Pagamento extends GenericDomain{
 	public String getNumeroCartao() {
 		return numeroCartao;
 	}
-
+	
 	public void setNumeroCartao(String numeroCartao) {
 		this.numeroCartao = numeroCartao;
 	}

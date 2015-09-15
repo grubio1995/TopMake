@@ -16,13 +16,13 @@ public class Compra extends GenericDomain {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCompra;
 	
-	@Column(nullable = false, precision = 6, scale = 2)
+	@Column(nullable = false, precision = 7, scale = 2)
 	private BigDecimal precoTotal;
-
+	
 	public Date getDataCompra() {
 		return dataCompra;
 	}
-
+	
 	public void setDataCompra(Date dataCompra) {
 		this.dataCompra = dataCompra;
 	}

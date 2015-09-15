@@ -12,22 +12,22 @@ import javax.persistence.TemporalType;
 @Entity
 public class Cliente extends GenericDomain {
 
-	@Column(length = 20, nullable = false)
+	@Column(length = 30, nullable = false)
 	private String bairro;
 	
 	@Column(length = 10, nullable = false)
 	private String cep;
 	
-	@Column(length = 20, nullable = false)
+	@Column(length = 30, nullable = false)
 	private String cidade;
 	
-	@Column(length = 10, nullable = false)
+	@Column(length = 2, nullable = false)
 	private String estado;
 	
-	@Column(length = 13,nullable = false)
+	@Column(length = 14, nullable = false)
 	private String telefone;
 	
-	@Column(length = 14, nullable = false)
+	@Column(length = 15, nullable = false)
 	private String celular;
 	
 	@Column(nullable = false)
@@ -43,13 +43,13 @@ public class Cliente extends GenericDomain {
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 	
-	@Column(length = 15,nullable = false)
+	@Column(length = 15, nullable = false)
 	private String estadoCivil;
 	
 	@JoinColumn(nullable = false)
 	@OneToOne
 	private Usuario usuario;
-	
+
 	public String getBairro() {
 		return bairro;
 	}
@@ -145,4 +145,5 @@ public class Cliente extends GenericDomain {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
 }

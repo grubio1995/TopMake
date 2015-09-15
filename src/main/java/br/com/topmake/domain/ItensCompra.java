@@ -23,11 +23,11 @@ public class ItensCompra extends GenericDomain {
 		@JoinColumn(nullable = false)
 		@ManyToOne
 		private Compra compra;
-
+		
 		public Short getQtdProduto() {
 			return qtdProduto;
 		}
-
+		
 		public void setQtdProduto(Short qtdProduto) {
 			this.qtdProduto = qtdProduto;
 		}

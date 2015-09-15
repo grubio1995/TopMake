@@ -1,47 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
+	
+	<!-- Fábrica de sessões -->
 	<session-factory>
-
-		<!-- Configurações de Conexão com o Banco de Dados -->
+		
+		<!-- Configurações de conexão com o Banco de Dados -->
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://127.0.0.1:3306/topmake</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/topmake</property>
 		<property name="connection.username">root</property>
-		<property name="connection.password">root</property>
+		<property name="connection.password">johnny94</property>
 
-		<!-- Pool de Conexões -->
+		<!-- Pool de conexões --> 
 		<property name="connection.pool_size">1</property>
-
-		<!-- SQL dialect -->
+		
+		<!-- Dialeto SQL -->
 		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
 
-		<!-- Gerenciamento do Contexto das Sessões -->
+		<!-- Gerenciamento do contexto das sessões -->
 		<property name="current_session_context_class">thread</property>
-
-		<!-- Cache de Segundo Nível -->
+		
+		<!-- Cache de segundo nível -->
 		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
-
-		<!-- Mostra as SQLs Geradas -->
+		
+		<!-- Mostrar no console os comandos SQL gerados -->
 		<property name="show_sql">true</property>
-
+		
 		<!-- Cria as tabelas do banco de dados -->
 		<property name="hbm2ddl.auto">validate</property>
-
+		
 		<!-- Mapeamento das entidades -->
-		<mapping class = "br.com.topmake.domain.Categoria"/>
-		<mapping class = "br.com.topmake.domain.Linha"/>
-		<mapping class = "br.com.topmake.domain.Produto"/>
-		<mapping class = "br.com.topmake.domain.Usuario"/>
-		<mapping class = "br.com.topmake.domain.Cliente"/>
-		<mapping class = "br.com.topmake.domain.Pedido"/>
-		<mapping class = "br.com.topmake.domain.ItensPedido"/>
-		<mapping class = "br.com.topmake.domain.Compra"/>
-		<mapping class = "br.com.topmake.domain.ItensCompra"/>		
-		<mapping class = "br.com.topmake.domain.Pagamento"/>
-		<mapping class = "br.com.topmake.domain.Revendedora"/>
-
+		<mapping class="br.com.topmake.domain.Categoria"/>
+		<mapping class="br.com.topmake.domain.Cliente"/>
+		<mapping class="br.com.topmake.domain.Compra"/>
+		<mapping class="br.com.topmake.domain.ItensCompra"/>
+		<mapping class="br.com.topmake.domain.ItensPedido"/>
+		<mapping class="br.com.topmake.domain.Linha"/>
+		<mapping class="br.com.topmake.domain.Pagamento"/>
+		<mapping class="br.com.topmake.domain.Pedido"/>
+		<mapping class="br.com.topmake.domain.Produto"/>
+		<mapping class="br.com.topmake.domain.Revendedora"/>
+		<mapping class="br.com.topmake.domain.Status"/>
+		<mapping class="br.com.topmake.domain.Usuario"/>
+		
 	</session-factory>
+	
 </hibernate-configuration>

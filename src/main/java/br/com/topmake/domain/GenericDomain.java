@@ -6,11 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-@SuppressWarnings("serial")
-@MappedSuperclass
+@SuppressWarnings("serial") //Ignorar aviso.
+@MappedSuperclass //Não gerar tabela.
 public class GenericDomain implements Serializable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id //Chave primária.
+	@GeneratedValue(strategy = GenerationType.AUTO) //Controle automático de ID no BD.
 	private Long codigo;
 
 	public Long getCodigo() {

@@ -11,25 +11,25 @@ import javax.persistence.ManyToOne;
 public class ItensPedido extends GenericDomain {
 
 	@Column(nullable = false)
-	private Short quantidadeProduto;
-
-	@Column(nullable = false, precision = 6, scale = 2)
+	private Short qtdProduto;
+	
+	@Column(nullable = false, precision = 7, scale = 2)
 	private BigDecimal valorProduto;
-
+	
 	@JoinColumn(nullable = false)
 	@ManyToOne
 	private Pedido pedido;
-
+	
 	@JoinColumn(nullable = false)
 	@ManyToOne
 	private Produto produto;
-
-	public Short getQuantidadeProduto() {
-		return quantidadeProduto;
+	
+	public Short getQtdProduto() {
+		return qtdProduto;
 	}
-
-	public void setQuantidadeProduto(Short quantidadeProduto) {
-		this.quantidadeProduto = quantidadeProduto;
+	
+	public void setQtdProduto(Short qtdProduto) {
+		this.qtdProduto = qtdProduto;
 	}
 
 	public BigDecimal getValorProduto() {
@@ -55,7 +55,5 @@ public class ItensPedido extends GenericDomain {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
-	
-	
 	
 }
