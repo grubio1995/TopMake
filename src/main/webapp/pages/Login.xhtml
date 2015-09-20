@@ -8,29 +8,29 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Login</title>
 	<style type="text/css">
-	#imgpos {
-		position:absolute;
-		left:45%;
-		top:45%;
-		margin-left:-110px;
-		margin-top:-40px;
-		}
+#imgpos {
+	position: absolute;
+	left: 45%;
+	top: 45%;
+	margin-left: -110px;
+	margin-top: -40px;
+}
 </style>
 </h:head>
 <h:body>
 	<h:form id="imgpos">
 
-		<h:panelGrid columns="2"  >
+		<h:panelGrid columns="2">
 			<p:outputLabel value="Login: " />
-			<p:inputText widgetVar="txtLogin" size="30" maxlength="20"/>
-			<p:outputLabel value="Senha: " />
-			<p:inputText widgetVar="txtSenha" size="30" maxlength="2"/>
+			<p:inputText widgetVar="txtLogin" size="30" maxlength="20" />
+			<p:outputLabel value="Senha:" />
+			<p:password maxlength="8" size="10" />
 		</h:panelGrid>
-		
+
 		<center>
 			<h:panelGrid columns="2">
-				<p:commandButton value="Login"/>
-				<p:commandButton value="Cadastre-se"/>
+				<p:commandButton value="Login" />
+				<p:commandButton value="Cadastre-se" />
 			</h:panelGrid>
 		</center>
 	</h:form>
