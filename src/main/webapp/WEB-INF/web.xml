@@ -6,7 +6,7 @@
 
 	<!-- Nome da Aplicação -->
 	<display-name>TopMake</display-name>
-
+	
 	<!-- Estágio do Projeto -->
 	<context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
@@ -23,6 +23,4 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
-    
-    </web-app>
-    
+</web-app>
