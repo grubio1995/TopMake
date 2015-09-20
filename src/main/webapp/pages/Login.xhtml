@@ -18,18 +18,21 @@
 </style>
 </h:head>
 <h:body>
+	<p:growl id="mensagem" />
 	<h:form id="imgpos">
 
 		<h:panelGrid columns="2">
 			<p:outputLabel value="Login: " />
 			<p:inputText widgetVar="txtLogin" size="30" maxlength="20" />
+
 			<p:outputLabel value="Senha:" />
 			<p:password maxlength="8" size="10" />
 		</h:panelGrid>
 
 		<center>
 			<h:panelGrid columns="2">
-				<p:commandButton value="Login" />
+				<p:commandButton value="Login" actionListener="#{loginBean.Login()}" 
+				update=":mensagem"/>
 				<p:commandButton value="Cadastre-se" />
 			</h:panelGrid>
 		</center>
