@@ -30,6 +30,27 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				
+				<p:outputLabel value="Valor Total:" />
+				<p:inputText maxlength="8" size="10" />	
+				
+				<p:outputLabel value="Data do Pedido:" />
+				<p:calendar />
+				
+				<p:outputLabel value="Status:" />
+				<p:selectOneMenu filter="true">
+					<f:selectItem itemValue="" itemLabel="Selecione status" />
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="Cliente:" />
+				<p:selectOneMenu filter="true">
+					<f:selectItem itemValue="" itemLabel="Selecione um cliente" />
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="Pagamento:" />
+				<p:selectOneMenu filter="true">
+					<f:selectItem itemValue="" itemLabel="Selecione um pagamento" />
+				</p:selectOneMenu>
+				
 			</h:panelGrid>
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar" />
