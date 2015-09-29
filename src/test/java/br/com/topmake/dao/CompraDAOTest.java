@@ -20,7 +20,7 @@ public class CompraDAOTest {
 		compra.setPrecoTotal(compraPrecoTotal);
 		
 		CompraDAO compraDAO = new CompraDAO();
-		compraDAO.salvar(compra);
+		compraDAO.Salvar(compra);
 		System.out.println("Compra salva com sucesso!");
 	}
 	
@@ -28,7 +28,7 @@ public class CompraDAOTest {
 	@Ignore
 	public void listar() {
 		CompraDAO compraDAO = new CompraDAO();
-		List<Compra> resultado = compraDAO.listar();
+		List<Compra> resultado = compraDAO.Listar();
 		
 		System.out.println("Total de compras encontradas: " + resultado.size());
 		
@@ -43,7 +43,7 @@ public class CompraDAOTest {
 		Integer compraCodigo = 3;
 		
 		CompraDAO compraDAO = new CompraDAO();
-		Compra compra = compraDAO.buscar(compraCodigo);
+		Compra compra = compraDAO.Buscar(compraCodigo);
 		
 		if(compra == null) {
 			System.out.println("Nenhuma compra encontrada!");
@@ -59,13 +59,13 @@ public class CompraDAOTest {
 		Integer compraCodigo = 4;
 		
 		CompraDAO compraDAO = new CompraDAO();
-		Compra compra = compraDAO.buscar(compraCodigo);
+		Compra compra = compraDAO.Buscar(compraCodigo);
 		
 		if(compra == null) {
 			System.out.println("Nenhuma compra encontrada!");
 		}
 		else {
-			compraDAO.excluir(compra);
+			compraDAO.Excluir(compra);
 			System.out.println("Compra removida com sucesso!");
 		}
 	}
@@ -78,7 +78,7 @@ public class CompraDAOTest {
 		BigDecimal compraPrecoTotal = new BigDecimal(1200.00);		
 		
 		CompraDAO compraDAO = new CompraDAO();
-		Compra compra = compraDAO.buscar(compraCodigo);
+		Compra compra = compraDAO.Buscar(compraCodigo);
 		
 		if (compra == null) {
 			System.out.println("Nenhuma compra encontrada!");
@@ -87,7 +87,7 @@ public class CompraDAOTest {
 			compra.setDataCompra(compraData);
 			compra.setPrecoTotal(compraPrecoTotal);
 			
-			compraDAO.editar(compra);
+			compraDAO.Editar(compra);
 			System.out.println("Compra editada com sucesso!");
 		}
 	}	

@@ -29,9 +29,9 @@ public class UsuarioBean implements Serializable {
 	public void Salvar() {
 		try {
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			usuarioDAO.salvar(usuario);
+			usuarioDAO.Merge(usuario);
 
-			novo();
+			
 
 			Messages.addGlobalInfo("O usuario " + usuario.getNome() + " foi salvo com sucesso!!!");
 		} catch (RuntimeException erro) {

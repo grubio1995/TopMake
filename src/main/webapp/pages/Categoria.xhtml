@@ -9,37 +9,67 @@
 	<title>Categoria</title>
 </h:head>
 <h:body>
-	<h:form>
-		<p:panel header="Categoria">
-			<p:dataTable emptyMessage="Nenhum registro escontrado."
-				paginator="true">
+	<p:growl id="mensagem" />
+
+	<h:form id="formListagem">
+		<p:panel header="Categoria - Listagem">
+			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
+				paginator="true" value="#{categoriaBean.categorias}" var="categoria" rows="6">
+				
 				<f:facet name="header">
-					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" />
+					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
+						actionListener="#{categoriaBean.Novo()}"
+						update=":formCadastro:painel" />
 				</f:facet>
 
-				<p:column headerText="Descrição ">
+				<p:column headerText="Descrição" sortBy="#{categoria.descricao}"
+					filterBy="#{categoria.descricao}">
+					<h:outputText value="#{categoria.descricao}" />
 				</p:column>
 
-				<p:column headerText="Opções ">
-				</p:column>
+				<p:column headerText="Opções">
 
+					<p:commandButton icon="ui-icon-trash"
+						actionListener="#{categoriaBean.Excluir}"
+						update=":mensagem :formListagem:tabela" >
+						<p:confirm header="Confirmação" message="Deseja excluir a categoria?"
+							icon="ui-icon-alert" />
+						<f:attribute name="categoriaSelecionada" value="#{categoria}" />
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-pencil" actionListener="#{categoriaBean.Editar}"
+						update=":mensagem :formCadastro:painel" oncomplete="PF('dialogo').show();">
+						<f:attribute name="categoriaSelecionada" value="#{categoria}" />
+					</p:commandButton>
+
+				</p:column>
 			</p:dataTable>
+
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
 		</p:panel>
 	</h:form>
 
-
-	<p:dialog header="Categoria " widgetVar="dialogo"
+	<p:dialog header="Categorias - Cadastro" widgetVar="dialogo"
 		draggable="false" resizable="false" modal="true" closable="false">
-		<h:form>
-			<h:panelGrid columns="2">
-				
-				<p:outputLabel value="Descrição " />
-				<p:inputText maxlength="200" size="50" />
+
+		<h:form id="formCadastro">
+			<h:panelGrid id="painel" columns="2">
+				<p:outputLabel value="Descrição:" />
+				<p:inputText maxlength="50" size="30"
+					value="#{categoriaBean.categoria.descricao}" />
 
 			</h:panelGrid>
+
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar" />
-				<p:commandButton value="Fechar" oncomplete="PF ('dialogo').hide();" />
+				<p:commandButton value="Salvar"
+					actionListener="#{categoriaBean.Salvar}"
+					update=":mensagem :formCadastro:painel :formListagem:tabela" />
+				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</h:panelGrid>
 		</h:form>
 	</p:dialog>

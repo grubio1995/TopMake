@@ -15,7 +15,7 @@ public class StatusDAOTest {
 		status.setDescricao(statusDescricao);
 		
 		StatusDAO statusDAO = new StatusDAO();
-		statusDAO.salvar(status);
+		statusDAO.Salvar(status);
 		System.out.println("Status salvo com sucesso!");
 	}
 	
@@ -23,7 +23,7 @@ public class StatusDAOTest {
 	@Ignore
 	public void listar() {
 		StatusDAO statusDAO = new StatusDAO();
-		List<Status> resultado = statusDAO.listar();
+		List<Status> resultado = statusDAO.Listar();
 		
 		System.out.println("Total de status encontrados: " + resultado.size());
 		
@@ -38,7 +38,7 @@ public class StatusDAOTest {
 		Integer statusCodigo = 1;
 		
 		StatusDAO statusDAO = new StatusDAO();
-		Status status = statusDAO.buscar(statusCodigo);
+		Status status = statusDAO.Buscar(statusCodigo);
 		
 		if (status == null) {
 			System.out.println("Nenhum status encontrado!");
@@ -56,13 +56,13 @@ public class StatusDAOTest {
 		Integer statusCodigo = 1;
 		
 		StatusDAO statusDAO = new StatusDAO();
-		Status status = statusDAO.buscar(statusCodigo);
+		Status status = statusDAO.Buscar(statusCodigo);
 		
 		if (status == null) {
 			System.out.println("Nenhum status encontrado!");
 		}
 		else {
-			statusDAO.excluir(status);
+			statusDAO.Excluir(status);
 			System.out.println("Status removido com sucesso!");
 		}
 	}
@@ -74,7 +74,7 @@ public class StatusDAOTest {
 		String statusDescricao = "Aguardando pagamento";
 		
 		StatusDAO statusDAO = new StatusDAO();
-		Status status = statusDAO.buscar(statusCodigo);
+		Status status = statusDAO.Buscar(statusCodigo);
 		
 		if (status == null) {
 			System.out.println("Nenhum status encontrado!");
@@ -82,7 +82,7 @@ public class StatusDAOTest {
 		else {
 			status.setDescricao(statusDescricao);
 			
-			statusDAO.editar(status);
+			statusDAO.Editar(status);
 			System.out.println("Status editado com sucesso!");
 		}		
 	}

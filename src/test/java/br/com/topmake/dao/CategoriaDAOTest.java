@@ -1,8 +1,10 @@
 package br.com.topmake.dao;
 
 import java.util.List;
+
 import org.junit.Ignore;
 import org.junit.Test;
+
 import br.com.topmake.domain.Categoria;
 
 public class CategoriaDAOTest {
@@ -15,7 +17,7 @@ public class CategoriaDAOTest {
 		categoria.setDescricao(categoriaDescricao);
 		
 		CategoriaDAO categoriaDAO = new CategoriaDAO();
-		categoriaDAO.salvar(categoria);
+		categoriaDAO.Salvar(categoria);
 		System.out.println("Categoria salva com sucesso!");
 	}
 	
@@ -23,7 +25,7 @@ public class CategoriaDAOTest {
 	@Ignore
 	public void listar() {
 		CategoriaDAO categoriaDAO = new CategoriaDAO();
-		List<Categoria> resultado = categoriaDAO.listar();
+		List<Categoria> resultado = categoriaDAO.Listar();
 		
 		System.out.println("Total de categorias encontradas: " + resultado.size());
 		
@@ -38,7 +40,7 @@ public class CategoriaDAOTest {
 		Integer categoriaCodigo = 1;
 		
 		CategoriaDAO categoriaDAO = new CategoriaDAO();
-		Categoria categoria = categoriaDAO.buscar(categoriaCodigo);
+		Categoria categoria = categoriaDAO.Buscar(categoriaCodigo);
 		
 		if (categoria == null) {
 			System.out.println("Nenhuma categoria encontrada!");
@@ -56,13 +58,13 @@ public class CategoriaDAOTest {
 		Integer categoriaCodigo = 1;
 		
 		CategoriaDAO categoriaDAO = new CategoriaDAO();
-		Categoria categoria = categoriaDAO.buscar(categoriaCodigo);
+		Categoria categoria = categoriaDAO.Buscar(categoriaCodigo);
 		
 		if (categoria == null) {
 			System.out.println("Nenhuma categoria encontrada!");
 		}
 		else {
-			categoriaDAO.excluir(categoria);
+			categoriaDAO.Excluir(categoria);
 			System.out.println("Categoria removida com sucesso!");
 		}
 	}
@@ -74,7 +76,7 @@ public class CategoriaDAOTest {
 		String categoriaDescricao = "Pele";
 		
 		CategoriaDAO categoriaDAO = new CategoriaDAO();
-		Categoria categoria = categoriaDAO.buscar(categoriaCodigo);
+		Categoria categoria = categoriaDAO.Buscar(categoriaCodigo);
 		
 		if (categoria == null) {
 			System.out.println("Nenhuma categoria encontrada!");
@@ -82,7 +84,7 @@ public class CategoriaDAOTest {
 		else {
 			categoria.setDescricao(categoriaDescricao);
 			
-			categoriaDAO.editar(categoria);
+			categoriaDAO.Editar(categoria);
 			System.out.println("Categoria editada com sucesso!");
 		}		
 	}

@@ -1,9 +1,12 @@
 package br.com.topmake.Bean;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
@@ -15,28 +18,74 @@ import br.com.topmake.domain.Categoria;
 @ViewScoped
 public class CategoriaBean implements Serializable {
 	private Categoria categoria;
-	
+	private List<Categoria> categorias;
+
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
+
 	public Categoria getCategoria() {
 		return categoria;
 	}
-	
+
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	public void novo() {
+	@PostConstruct
+	public void Listar() {
+		try {
+			CategoriaDAO categoriaDAO = new CategoriaDAO();
+			categorias = categoriaDAO.Listar();
+
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar listar as categorias!!");
+			erro.printStackTrace();
+		}
+	}
+
+	public void Novo() {
 		categoria = new Categoria();
 	}
+
 	public void Salvar() {
 		try {
 			CategoriaDAO categoriaDAO = new CategoriaDAO();
-			categoriaDAO.salvar(categoria);
+			categoriaDAO.Merge(categoria);
 
-			novo();
+			categoria = new Categoria();
+			categorias = categoriaDAO.Listar();
 
 			Messages.addGlobalInfo("A categoria " + categoria.getDescricao() + " foi salva com sucesso!!!");
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar salvar a categoria!!!");
 			erro.printStackTrace();
 		}
+	}
+
+	public void Excluir(ActionEvent evento) {
+		try {
+			categoria = (Categoria) evento.getComponent().getAttributes().get("categoriaSelecionada");
+			Messages.addGlobalInfo("Descrição: " + categoria.getDescricao());
+
+			CategoriaDAO categoriaDAO = new CategoriaDAO();
+			categoriaDAO.Excluir(categoria);
+
+			categorias = categoriaDAO.Listar();
+
+			Messages.addGlobalInfo("Categoria removida com sucesso ");
+		} catch (RuntimeException erro) {
+			Messages.addGlobalInfo("Ocorreu um erro ao tentar remover a Categoria" + erro);
+			erro.printStackTrace();
+		}
+	}
+
+	public void Editar(ActionEvent evento) {
+		categoria = (Categoria) evento.getComponent().getAttributes().get("categoriaSelecionada");
+		Messages.addGlobalInfo("" + categoria.getDescricao());
+		
 	}
 }

@@ -26,7 +26,7 @@ public class ClienteDAOTest {
 		String clienteTelefone = "Teste";
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		Usuario usuario = usuarioDAO.buscar(usuarioCodigo);
+		Usuario usuario = usuarioDAO.Buscar(usuarioCodigo);
 		
 		if (usuario == null) {
 			System.out.println("Nenhum usuário encontrado!");
@@ -48,7 +48,7 @@ public class ClienteDAOTest {
 			cliente.setUsuario(usuario);
 			
 			ClienteDAO clienteDAO = new ClienteDAO();			
-			clienteDAO.salvar(cliente);
+			clienteDAO.Salvar(cliente);
 			System.out.println("Cliente salvo com sucesso!");
 		}
 
@@ -58,7 +58,7 @@ public class ClienteDAOTest {
 	@Ignore
 	public void listar() {
 		ClienteDAO clienteDAO = new ClienteDAO();
-		List<Cliente> resultado = clienteDAO.listar();
+		List<Cliente> resultado = clienteDAO.Listar();
 		
 		System.out.println("Total de clientes encontrados: " + resultado.size());
 		
@@ -90,7 +90,7 @@ public class ClienteDAOTest {
 		Integer clienteCodigo = 2;
 		
 		ClienteDAO clienteDAO = new ClienteDAO();
-		Cliente cliente = clienteDAO.buscar(clienteCodigo);
+		Cliente cliente = clienteDAO.Buscar(clienteCodigo);
 		
 		if (cliente == null) {
 			System.out.println("Nenhum cliente encontrado!");
@@ -112,15 +112,15 @@ public class ClienteDAOTest {
 		Integer clienteCodigo = 3;
 		
 		ClienteDAO clienteDAO = new ClienteDAO();
-		Cliente cliente = clienteDAO.buscar(clienteCodigo);
+		Cliente cliente = clienteDAO.Buscar(clienteCodigo);
 		
-		clienteDAO.excluir(cliente);
+		clienteDAO.Excluir(cliente);
 		
 		if (cliente == null) {
 			System.out.println("Nenhum cliente encontrado!");
 		}
 		else {
-			clienteDAO.excluir(cliente);
+			clienteDAO.Excluir(cliente);
 			System.out.println("Cliente removido com sucesso!");
 		}
 	}
@@ -132,21 +132,21 @@ public class ClienteDAOTest {
 		Integer clienteCodigo = 2;
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		Usuario usuario = usuarioDAO.buscar(usuarioCodigo);
+		Usuario usuario = usuarioDAO.Buscar(usuarioCodigo);
 		
 		if (usuario == null) {
 			System.out.println("Nenhum usuario encontrado!");
 		}
 		else {
 			ClienteDAO clienteDAO = new ClienteDAO();
-			Cliente cliente = clienteDAO.buscar(clienteCodigo);
+			Cliente cliente = clienteDAO.Buscar(clienteCodigo);
 			
 			if (cliente == null) {
 				System.out.println("Nenhum cliente encontrado!");
 			}
 			else {
 				cliente.setCelular("(14) 99123-4567");
-				clienteDAO.editar(cliente);
+				clienteDAO.Editar(cliente);
 			}
 		}
 			

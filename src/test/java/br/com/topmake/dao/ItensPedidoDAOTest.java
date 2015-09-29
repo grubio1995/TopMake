@@ -18,14 +18,14 @@ public class ItensPedidoDAOTest {
 		BigDecimal itensPedidoValorProduto = new BigDecimal(590.0);
 		
 		PedidoDAO pedidoDAO = new PedidoDAO();
-		Pedido pedido = pedidoDAO.buscar(pedidoCodigo);
+		Pedido pedido = pedidoDAO.Buscar(pedidoCodigo);
 		
 		if (pedido == null) {
 			System.out.println("Nenhum pedido encontrada!");
 		}
 		else {
 			ProdutoDAO produtoDAO = new ProdutoDAO();
-			Produto produto = produtoDAO.buscar(produtoCodigo);
+			Produto produto = produtoDAO.Buscar(produtoCodigo);
 			
 			if (produto == null) {
 				System.out.println("Nenhum produto encontrada!");
@@ -39,7 +39,7 @@ public class ItensPedidoDAOTest {
 				itensPedido.setQtdProduto(itensPedidoQtdProduto);
 				
 				ItensPedidoDAO itensPedidoDAO = new ItensPedidoDAO();
-				itensPedidoDAO.salvar(itensPedido);
+				itensPedidoDAO.Salvar(itensPedido);
 				System.out.println("Item de pedido salvo com sucesso!");					
 			}			
 		}
@@ -49,7 +49,7 @@ public class ItensPedidoDAOTest {
 	@Ignore
 	public void listar() {
 		ItensPedidoDAO itensPedidoDAO = new ItensPedidoDAO();
-		List<ItensPedido> resultado = itensPedidoDAO.listar();
+		List<ItensPedido> resultado = itensPedidoDAO.Listar();
 		
 		System.out.println("Total de itens de pedido encontrados: " + resultado.size());
 		
@@ -66,7 +66,7 @@ public class ItensPedidoDAOTest {
 		Integer itensPedidoCodigo = 2;
 		
 		ItensPedidoDAO itensPedidoDAO = new ItensPedidoDAO();
-		ItensPedido itensPedido = itensPedidoDAO.buscar(itensPedidoCodigo);
+		ItensPedido itensPedido = itensPedidoDAO.Buscar(itensPedidoCodigo);
 		
 		if(itensPedido == null) {
 			System.out.println("Nenhum item de pedido encontrado!");
@@ -84,13 +84,13 @@ public class ItensPedidoDAOTest {
 		Integer itensPedidoCodigo = 3;
 		
 		ItensPedidoDAO itensPedidoDAO = new ItensPedidoDAO();
-		ItensPedido itensPedido = itensPedidoDAO.buscar(itensPedidoCodigo);
+		ItensPedido itensPedido = itensPedidoDAO.Buscar(itensPedidoCodigo);
 		
 		if (itensPedido == null) {
 			System.out.println("Nenhum item de pedido encontrado!");
 		}
 		else {
-			itensPedidoDAO.excluir(itensPedido);
+			itensPedidoDAO.Excluir(itensPedido);
 			System.out.println("Item de pedido removido com sucesso!");
 		}
 		
@@ -106,28 +106,28 @@ public class ItensPedidoDAOTest {
 		BigDecimal itensPedidoValorProduto = new BigDecimal(12.00);
 		
 		PedidoDAO pedidoDAO = new PedidoDAO();
-		Pedido pedido = pedidoDAO.buscar(pedidoCodigo);
+		Pedido pedido = pedidoDAO.Buscar(pedidoCodigo);
 		
 		if (pedido == null) {
 			System.out.println("Nenhum pedido encontrado!");
 		}
 		else {
 			ProdutoDAO produtoDAO = new ProdutoDAO();
-			Produto produto = produtoDAO.buscar(produtoCodigo);
+			Produto produto = produtoDAO.Buscar(produtoCodigo);
 			
 			if (produto == null) {
 				System.out.println("Nenhum produto encontrado!");
 			}
 			else {
 				ItensPedidoDAO itensPedidoDAO = new ItensPedidoDAO();
-				ItensPedido itensPedido = itensPedidoDAO.buscar(itensPedidoCodigo);
+				ItensPedido itensPedido = itensPedidoDAO.Buscar(itensPedidoCodigo);
 				
 				if (itensPedido == null) {
 					System.out.println("Nenhum item de pedido encontrado!");
 				}
 				else {
 					itensPedido.setPedido(pedido);
-					itensPedidoDAO.editar(itensPedido);
+					itensPedidoDAO.Editar(itensPedido);
 					itensPedido.setQtdProduto(itensPedidoQtdProduto);
 					itensPedido.setValorProduto(itensPedidoValorProduto);
 					

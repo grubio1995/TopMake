@@ -23,7 +23,7 @@ public class UsuarioDAOTest {
 		usuario.setTipoUsuario(usuarioTipoUsuario);
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		usuarioDAO.salvar(usuario);
+		usuarioDAO.Salvar(usuario);
 		System.out.println("Usuário salvo com sucesso!");		
 	}
 
@@ -31,7 +31,7 @@ public class UsuarioDAOTest {
 	@Ignore
 	public void listar() {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		List<Usuario> resultado = usuarioDAO.listar();
+		List<Usuario> resultado = usuarioDAO.Listar();
 		
 		System.out.println("Total de usuários encontrados: " + resultado.size());
 		
@@ -47,7 +47,7 @@ public class UsuarioDAOTest {
 		Integer usuarioCodigo = 1;
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		Usuario usuario = usuarioDAO.buscar(usuarioCodigo);
+		Usuario usuario = usuarioDAO.Buscar(usuarioCodigo);
 		
 		if (usuario == null) {
 			System.out.println("Nenhum usuário encontrado");
@@ -65,13 +65,13 @@ public class UsuarioDAOTest {
 		Integer usuarioCodigo = 3;
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		Usuario usuario = usuarioDAO.buscar(usuarioCodigo);
+		Usuario usuario = usuarioDAO.Buscar(usuarioCodigo);
 		
 		if (usuario == null) {
 			System.out.println("Nenhum usuário encontrado!");
 		}
 		else {
-			usuarioDAO.excluir(usuario);
+			usuarioDAO.Excluir(usuario);
 			System.out.println("Usuário removido com sucesso!");
 		}		
 	}
@@ -87,7 +87,7 @@ public class UsuarioDAOTest {
 		Character usuarioTipoUsuario = 'C';
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		Usuario usuario = usuarioDAO.buscar(usuarioCodigo);
+		Usuario usuario = usuarioDAO.Buscar(usuarioCodigo);
 		
 		if (usuario == null) {
 			System.out.println("Nenhum usuário encontrado!");
@@ -98,7 +98,7 @@ public class UsuarioDAOTest {
 			usuario.setLogin(usuarioLogin);
 			usuario.setSenha(usuarioSenha);
 			usuario.setTipoUsuario(usuarioTipoUsuario);
-			usuarioDAO.editar(usuario);
+			usuarioDAO.Editar(usuario);
 			
 			System.out.println("Usuário editado com sucesso!");		
 		}

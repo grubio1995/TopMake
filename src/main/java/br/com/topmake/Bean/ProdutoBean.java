@@ -31,9 +31,9 @@ public class ProdutoBean implements Serializable {
 	public void Salvar() {
 		try {
 			ProdutoDAO produtoDAO = new ProdutoDAO();
-			produtoDAO.salvar(produto);
+			produtoDAO.Merge(produto);
 
-			novo();
+			
 
 			Messages.addGlobalInfo("O produto " + produto.getNome() + " foi salvo com sucesso!!!");
 		} catch (RuntimeException erro) {

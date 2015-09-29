@@ -30,9 +30,9 @@ public class PedidoBean implements Serializable {
 	public void Salvar() {
 		try {
 			PedidoDAO pedidoDAO = new PedidoDAO();
-			pedidoDAO.salvar(pedido);
+			pedidoDAO.Merge(pedido);
 
-			novo();
+			
 
 			Messages.addGlobalInfo("O pedido do(a) cliente: " + pedido.getCliente() + " foi salvo com sucesso!!!");
 		} catch (RuntimeException erro) {

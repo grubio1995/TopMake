@@ -15,7 +15,7 @@ public class LinhaDAOTest {
 		linha.setDescricao(linhaDescricao);
 		
 		LinhaDAO linhaDAO = new LinhaDAO();
-		linhaDAO.salvar(linha);
+		linhaDAO.Salvar(linha);
 		System.out.println("Linha salva com sucesso!");
 	}
 
@@ -23,7 +23,7 @@ public class LinhaDAOTest {
 	@Ignore
 	public void listar(){
 		LinhaDAO linhaDAO = new LinhaDAO();
-		List<Linha> resultado = linhaDAO.listar();
+		List<Linha> resultado = linhaDAO.Listar();
 		
 		System.out.println("Total de linhas encontradas: " + resultado.size());
 		
@@ -38,7 +38,7 @@ public class LinhaDAOTest {
 		Integer linhaCodigo = 2;
 		
 		LinhaDAO linhaDAO = new LinhaDAO();
-		Linha linha = linhaDAO.buscar(linhaCodigo);
+		Linha linha = linhaDAO.Buscar(linhaCodigo);
 		
 		if (linha == null) {
 			System.out.println("Nenhuma linha encontrada!");
@@ -55,13 +55,13 @@ public class LinhaDAOTest {
 		Integer linhaCodigo = 3;
 		
 		LinhaDAO linhaDAO = new LinhaDAO();
-		Linha linha = linhaDAO.buscar(linhaCodigo);
+		Linha linha = linhaDAO.Buscar(linhaCodigo);
 		
 		if (linha == null) {
 			System.out.println("Nenhuma linha encontrada!");
 		}
 		else {
-			linhaDAO.excluir(linha);
+			linhaDAO.Excluir(linha);
 			System.out.println("Linha removida com sucesso!");			
 		}
 	} 
@@ -73,14 +73,14 @@ public class LinhaDAOTest {
 		String linhaDescricao = "TimeWise";
 		
 		LinhaDAO linhaDAO = new LinhaDAO();
-		Linha linha = linhaDAO.buscar(linhaCodigo);
+		Linha linha = linhaDAO.Buscar(linhaCodigo);
 		
 		if (linha == null) {
 			System.out.println("Nenhuma linha encontrada!");
 		}
 		else {			
 			linha.setDescricao(linhaDescricao);
-			linhaDAO.editar(linha);
+			linhaDAO.Editar(linha);
 			System.out.println("Linha editada com sucesso!");
 		}
 	}

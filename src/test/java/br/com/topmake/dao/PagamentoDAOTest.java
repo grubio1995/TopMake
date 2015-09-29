@@ -26,7 +26,7 @@ public class PagamentoDAOTest {
 		pagamento.setSituacao(pagamentoSituacao);
 		
 		PagamentoDAO pagamentoDAO = new PagamentoDAO();
-		pagamentoDAO.salvar(pagamento);
+		pagamentoDAO.Salvar(pagamento);
 		System.out.println("Pagamento salvo com sucesso!");
 	}
 
@@ -34,7 +34,7 @@ public class PagamentoDAOTest {
 	@Ignore
 	public void listar(){
 		PagamentoDAO pagamentoDAO = new PagamentoDAO();
-		List<Pagamento> resultado = pagamentoDAO.listar();
+		List<Pagamento> resultado = pagamentoDAO.Listar();
 		
 		System.out.println("Total de pagamentos encontrados: " + resultado.size());
 		
@@ -51,7 +51,7 @@ public class PagamentoDAOTest {
 		Integer pagamentoCodigo = 3;
 		
 		PagamentoDAO pagamentoDAO = new PagamentoDAO();
-		Pagamento pagamento = pagamentoDAO.buscar(pagamentoCodigo);
+		Pagamento pagamento = pagamentoDAO.Buscar(pagamentoCodigo);
 		
 		if (pagamento == null) {
 			System.out.println("Nenhum pagamento encontrado!");
@@ -71,13 +71,13 @@ public class PagamentoDAOTest {
 		Integer pagamentoCodigo = 3;
 		
 		PagamentoDAO pagamentoDAO = new PagamentoDAO();
-		Pagamento pagamento = pagamentoDAO.buscar(pagamentoCodigo);
+		Pagamento pagamento = pagamentoDAO.Buscar(pagamentoCodigo);
 
 		if (pagamento == null) {
 			System.out.println("Nenhum pagamento encontrado!");
 		}
 		else {
-			pagamentoDAO.excluir(pagamento);
+			pagamentoDAO.Excluir(pagamento);
 			System.out.println("Pagamento removido com sucesso!");
 		}
 	}
@@ -94,7 +94,7 @@ public class PagamentoDAOTest {
 		String pagamentoSituacao = "Reprovado";
 		
 		PagamentoDAO pagamentoDAO = new PagamentoDAO();
-		Pagamento pagamento = pagamentoDAO.buscar(pagamentoCodigo);
+		Pagamento pagamento = pagamentoDAO.Buscar(pagamentoCodigo);
 		
 		if (pagamento == null) {
 			System.out.println("Nenhum pagamento encontrado!");
@@ -107,7 +107,7 @@ public class PagamentoDAOTest {
 			pagamento.setNumeroAgencia(pagamentoNumeroAgencia);
 			pagamento.setSituacao(pagamentoSituacao);
 			
-			pagamentoDAO.editar(pagamento);
+			pagamentoDAO.Editar(pagamento);
 			System.out.println("Pagamento editado com sucesso!");
 		}	
 	}
