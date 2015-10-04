@@ -17,7 +17,7 @@ public class CategoriaDAOTest {
 		categoria.setDescricao(categoriaDescricao);
 		
 		CategoriaDAO categoriaDAO = new CategoriaDAO();
-		categoriaDAO.Salvar(categoria);
+		categoriaDAO.salvar(categoria);
 		System.out.println("Categoria salva com sucesso!");
 	}
 	
@@ -25,7 +25,7 @@ public class CategoriaDAOTest {
 	@Ignore
 	public void listar() {
 		CategoriaDAO categoriaDAO = new CategoriaDAO();
-		List<Categoria> resultado = categoriaDAO.Listar();
+		List<Categoria> resultado = categoriaDAO.listar();
 		
 		System.out.println("Total de categorias encontradas: " + resultado.size());
 		
@@ -40,7 +40,7 @@ public class CategoriaDAOTest {
 		Integer categoriaCodigo = 1;
 		
 		CategoriaDAO categoriaDAO = new CategoriaDAO();
-		Categoria categoria = categoriaDAO.Buscar(categoriaCodigo);
+		Categoria categoria = categoriaDAO.buscar(categoriaCodigo);
 		
 		if (categoria == null) {
 			System.out.println("Nenhuma categoria encontrada!");
@@ -58,13 +58,13 @@ public class CategoriaDAOTest {
 		Integer categoriaCodigo = 1;
 		
 		CategoriaDAO categoriaDAO = new CategoriaDAO();
-		Categoria categoria = categoriaDAO.Buscar(categoriaCodigo);
+		Categoria categoria = categoriaDAO.buscar(categoriaCodigo);
 		
 		if (categoria == null) {
 			System.out.println("Nenhuma categoria encontrada!");
 		}
 		else {
-			categoriaDAO.Excluir(categoria);
+			categoriaDAO.excluir(categoria);
 			System.out.println("Categoria removida com sucesso!");
 		}
 	}
@@ -76,7 +76,7 @@ public class CategoriaDAOTest {
 		String categoriaDescricao = "Pele";
 		
 		CategoriaDAO categoriaDAO = new CategoriaDAO();
-		Categoria categoria = categoriaDAO.Buscar(categoriaCodigo);
+		Categoria categoria = categoriaDAO.buscar(categoriaCodigo);
 		
 		if (categoria == null) {
 			System.out.println("Nenhuma categoria encontrada!");
@@ -84,7 +84,7 @@ public class CategoriaDAOTest {
 		else {
 			categoria.setDescricao(categoriaDescricao);
 			
-			categoriaDAO.Editar(categoria);
+			categoriaDAO.editar(categoria);
 			System.out.println("Categoria editada com sucesso!");
 		}		
 	}

@@ -39,7 +39,7 @@ public class CategoriaBean implements Serializable {
 	public void Listar() {
 		try {
 			CategoriaDAO categoriaDAO = new CategoriaDAO();
-			categorias = categoriaDAO.Listar();
+			categorias = categoriaDAO.listar();
 
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar as categorias!!");
@@ -47,17 +47,18 @@ public class CategoriaBean implements Serializable {
 		}
 	}
 
-	public void Novo() {
+	public void novo() {
 		categoria = new Categoria();
 	}
 
-	public void Salvar() {
+	public void salvar() {
 		try {
 			CategoriaDAO categoriaDAO = new CategoriaDAO();
-			categoriaDAO.Merge(categoria);
+			categoriaDAO.merge(categoria);
 
-			categoria = new Categoria();
-			categorias = categoriaDAO.Listar();
+			
+			categorias = categoriaDAO.listar();
+			
 
 			Messages.addGlobalInfo("A categoria " + categoria.getDescricao() + " foi salva com sucesso!!!");
 		} catch (RuntimeException erro) {
@@ -66,15 +67,15 @@ public class CategoriaBean implements Serializable {
 		}
 	}
 
-	public void Excluir(ActionEvent evento) {
+	public void excluir(ActionEvent evento) {
 		try {
 			categoria = (Categoria) evento.getComponent().getAttributes().get("categoriaSelecionada");
 			Messages.addGlobalInfo("Descrição: " + categoria.getDescricao());
 
 			CategoriaDAO categoriaDAO = new CategoriaDAO();
-			categoriaDAO.Excluir(categoria);
+			categoriaDAO.excluir(categoria);
 
-			categorias = categoriaDAO.Listar();
+			categorias = categoriaDAO.listar();
 
 			Messages.addGlobalInfo("Categoria removida com sucesso ");
 		} catch (RuntimeException erro) {
@@ -83,7 +84,7 @@ public class CategoriaBean implements Serializable {
 		}
 	}
 
-	public void Editar(ActionEvent evento) {
+	public void editar(ActionEvent evento) {
 		categoria = (Categoria) evento.getComponent().getAttributes().get("categoriaSelecionada");
 		Messages.addGlobalInfo("" + categoria.getDescricao());
 		

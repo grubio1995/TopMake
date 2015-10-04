@@ -20,7 +20,7 @@ public class GenericDAO<Entidade> {
 	}	
 	
 	//Salvar um registro.
-	public void Salvar(Entidade entidade) {
+	public void salvar(Entidade entidade) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction transacao = null;
 		
@@ -42,7 +42,7 @@ public class GenericDAO<Entidade> {
 	
 	//Listar todos os registros.
 	@SuppressWarnings("unchecked")
-	public List<Entidade> Listar() {
+	public List<Entidade> listar() {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		
 		try{
@@ -60,7 +60,7 @@ public class GenericDAO<Entidade> {
 	
 	//Buscar um registro.
 	@SuppressWarnings("unchecked")
-	public Entidade Buscar(Integer intCodigo) {
+	public Entidade buscar(Integer intCodigo) {
 		Long codigo = intCodigo.longValue();
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		
@@ -79,7 +79,7 @@ public class GenericDAO<Entidade> {
 	}
 	
 	//Excluir um registro.
-	public void Excluir(Entidade entidade) {
+	public void excluir(Entidade entidade) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction transacao = null;
 		
@@ -100,7 +100,7 @@ public class GenericDAO<Entidade> {
 	}
 		
 	//Editar um registro.
-	public void Editar(Entidade entidade) {
+	public void editar(Entidade entidade) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction transacao = null;
 
@@ -121,7 +121,7 @@ public class GenericDAO<Entidade> {
 		
 		
 	}
-	public void Merge(Entidade entidade) {
+	public void merge(Entidade entidade) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction transacao = null;
 		try {

@@ -23,21 +23,21 @@ public class PedidoDAOTest {
 		BigDecimal pedidoValorTotal = new BigDecimal(100.00);
 		
 		PagamentoDAO pagamentoDAO = new PagamentoDAO();
-		Pagamento pagamento = pagamentoDAO.Buscar(pagamentoCodigo);
+		Pagamento pagamento = pagamentoDAO.buscar(pagamentoCodigo);
 		
 		if (pagamento == null) {
 			System.out.println("Nenhum pagamento encontrado!");				
 		}
 		else {
 			ClienteDAO clienteDAO = new ClienteDAO();		
-			Cliente cliente = clienteDAO.Buscar(clienteCodigo);
+			Cliente cliente = clienteDAO.buscar(clienteCodigo);
 			
 			if (cliente == null) {
 				System.out.println("Nenhum cliente encontrado!");				
 			}
 			else {
 				StatusDAO statusDAO = new StatusDAO();
-				Status status = statusDAO.Buscar(statusCodigo);
+				Status status = statusDAO.buscar(statusCodigo);
 				if (status == null) {
 					System.out.println("Nenhum status encontrado!");					
 				}
@@ -51,7 +51,7 @@ public class PedidoDAOTest {
 					pedido.setValorTotal(pedidoValorTotal);
 					
 					PedidoDAO pedidoDAO = new PedidoDAO();
-					pedidoDAO.Salvar(pedido);
+					pedidoDAO.salvar(pedido);
 					System.out.println("Pedido salvo com sucesso!");
 				}				
 			}			
@@ -63,7 +63,7 @@ public class PedidoDAOTest {
 	public void listar() {
 		
 		PedidoDAO pedidoDAO = new PedidoDAO();
-		List<Pedido> resultado = pedidoDAO.Listar();
+		List<Pedido> resultado = pedidoDAO.listar();
 		
 		System.out.println("Total de pedidos encontrados: " + resultado.size());
 		
@@ -86,7 +86,7 @@ public class PedidoDAOTest {
 		Integer pedidoCodigo = 2;
 		
 		PedidoDAO pedidoDAO = new PedidoDAO();
-		Pedido pedido = pedidoDAO.Buscar(pedidoCodigo);
+		Pedido pedido = pedidoDAO.buscar(pedidoCodigo);
 		
 		if (pedido == null) {
 			System.out.println("Nenhum pedido encontrado!");
@@ -108,13 +108,13 @@ public class PedidoDAOTest {
 		Integer pedidoCodigo = 3;
 		
 		PedidoDAO pedidoDAO = new PedidoDAO();
-		Pedido pedido = pedidoDAO.Buscar(pedidoCodigo);
+		Pedido pedido = pedidoDAO.buscar(pedidoCodigo);
 
 		if (pedido == null) {
 			System.out.println("Nenhum pedido encontrado!");
 		}
 		else {
-			pedidoDAO.Excluir(pedido);
+			pedidoDAO.excluir(pedido);
 			System.out.println("Pedido removido com sucesso!");
 		}
 	}
@@ -128,14 +128,14 @@ public class PedidoDAOTest {
 		Status status = new Status();
 		
 		ClienteDAO clienteDAO = new ClienteDAO();
-		Cliente cliente = clienteDAO.Buscar(clienteCodigo);
+		Cliente cliente = clienteDAO.buscar(clienteCodigo);
 		
 		if (cliente == null) {
 			System.out.println("Nenhum cliente encontrado!");
 		}
 		else {
 			PedidoDAO pedidoDAO = new PedidoDAO();
-			Pedido pedido = pedidoDAO.Buscar(pedidoCodigo);
+			Pedido pedido = pedidoDAO.buscar(pedidoCodigo);
 			
 			if (pedido == null) {
 				System.out.println("Nenhum pedido encontrado!");
@@ -145,7 +145,7 @@ public class PedidoDAOTest {
 				pedido.setCliente(cliente);
 				pedido.setStatus(status);
 				
-				pedidoDAO.Editar(pedido);
+				pedidoDAO.editar(pedido);
 				
 				System.out.println("Pedido editado com sucesso!");				
 			}

@@ -31,7 +31,7 @@ public class ProdutoBean implements Serializable {
 	public void Salvar() {
 		try {
 			ProdutoDAO produtoDAO = new ProdutoDAO();
-			produtoDAO.Merge(produto);
+			produtoDAO.merge(produto);
 
 			
 

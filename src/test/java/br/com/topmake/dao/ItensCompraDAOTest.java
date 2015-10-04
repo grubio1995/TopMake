@@ -20,14 +20,14 @@ public class ItensCompraDAOTest {
 		ItensCompra itensCompra = new ItensCompra();
 		
 		CompraDAO compraDAO = new CompraDAO();
-		Compra compra = compraDAO.Buscar(compraCodigo);
+		Compra compra = compraDAO.buscar(compraCodigo);
 		
 		if (compra == null) {
 			System.out.println("Nenhuma compra encontrada!");
 		}
 		else {
 			ProdutoDAO produtoDAO = new ProdutoDAO();
-			Produto produto = produtoDAO.Buscar(produtoCodigo);
+			Produto produto = produtoDAO.buscar(produtoCodigo);
 			
 			if (produto == null) {
 				System.out.println("Nenhum produto encontrada!");
@@ -40,7 +40,7 @@ public class ItensCompraDAOTest {
 				
 				ItensCompraDAO itensCompraDAO = new ItensCompraDAO();
 				
-				itensCompraDAO.Salvar(itensCompra);
+				itensCompraDAO.salvar(itensCompra);
 				System.out.println("Item de compra salvo com sucesso!");				
 			}			
 		}
@@ -50,7 +50,7 @@ public class ItensCompraDAOTest {
 	@Ignore
 	public void listar() {
 		ItensCompraDAO itensCompraDAO = new ItensCompraDAO();
-		List<ItensCompra> resultado = itensCompraDAO.Listar();
+		List<ItensCompra> resultado = itensCompraDAO.listar();
 		
 		System.out.println("Total de itens de compra encontrados: " + resultado.size());
 		
@@ -67,7 +67,7 @@ public class ItensCompraDAOTest {
 		Integer itensCompraCodigo = 3;
 		
 		ItensCompraDAO itensCompraDAO = new ItensCompraDAO();
-		ItensCompra itensCompra = itensCompraDAO.Buscar(itensCompraCodigo);
+		ItensCompra itensCompra = itensCompraDAO.buscar(itensCompraCodigo);
 		
 		if (itensCompra == null) {
 			System.out.println("Nenhum item de compra encontrado!");
@@ -85,15 +85,15 @@ public class ItensCompraDAOTest {
 		Integer itensCompraCodigo = 3;
 		
 		ItensCompraDAO itensCompraDAO = new ItensCompraDAO();
-		ItensCompra itensCompra = itensCompraDAO.Buscar(itensCompraCodigo);
+		ItensCompra itensCompra = itensCompraDAO.buscar(itensCompraCodigo);
 		
-		itensCompraDAO.Excluir(itensCompra);
+		itensCompraDAO.excluir(itensCompra);
 		
 		if (itensCompra == null) {
 			System.out.println("Nenhum item de compra encontrado!");
 		}
 		else {
-			itensCompraDAO.Excluir(itensCompra);
+			itensCompraDAO.excluir(itensCompra);
 			System.out.println("Item de compra removido com sucesso!");
 		}
 	}
@@ -108,21 +108,21 @@ public class ItensCompraDAOTest {
 		BigDecimal itensCompraValorProduto = new BigDecimal(13);		
 		
 		CompraDAO compraDAO = new CompraDAO();		
-		Compra compra = compraDAO.Buscar(compraCodigo);
+		Compra compra = compraDAO.buscar(compraCodigo);
 		
 		if (compra == null) {
 			System.out.println("Nenhuma compra encontrada!");
 		}
 		else {
 			ProdutoDAO produtoDAO = new ProdutoDAO();
-			Produto produto = produtoDAO.Buscar(produtoCodigo);
+			Produto produto = produtoDAO.buscar(produtoCodigo);
 			
 			if (produto == null) {
 				System.out.println("Nenhum produto encontrado!");
 			}
 			else {
 				ItensCompraDAO itensCompraDAO = new ItensCompraDAO();
-				ItensCompra itensCompra = itensCompraDAO.Buscar(itensCompraCodigo);	
+				ItensCompra itensCompra = itensCompraDAO.buscar(itensCompraCodigo);	
 				
 				if (itensCompra == null) {
 					System.out.println("Nenhum produto encontrado!");
@@ -133,7 +133,7 @@ public class ItensCompraDAOTest {
 					itensCompra.setCompra(compra);
 					
 					itensCompra.setValorProduto(itensCompraValorProduto);
-					itensCompraDAO.Editar(itensCompra);
+					itensCompraDAO.editar(itensCompra);
 					
 					System.out.println("Item de compra editado com sucesso!");
 				}

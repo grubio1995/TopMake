@@ -41,10 +41,10 @@ public class LinhaBean implements Serializable {
 	}
 	
 	@PostConstruct
-	public void Listar() {
+	public void listar() {
 		try {
 			LinhaDAO linhaDAO = new LinhaDAO();
-			linhas = linhaDAO.Listar();
+			linhas = linhaDAO.listar();
 
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar as linhas!!!");
@@ -56,13 +56,13 @@ public class LinhaBean implements Serializable {
 		linha = new Linha();
 	}
 
-	public void Salvar() {
+	public void salvar() {
 		try {
 			LinhaDAO linhaDAO = new LinhaDAO();
-			linhaDAO.Merge(linha);
+			linhaDAO.merge(linha);
 
 			linha = new Linha();
-			linhas = linhaDAO.Listar();
+			linhas = linhaDAO.listar();
 
 			Messages.addGlobalInfo("A linha " + linha.getDescricao() + " foi salva com sucesso!!!");
 		} catch (RuntimeException erro) {
@@ -72,15 +72,15 @@ public class LinhaBean implements Serializable {
 	}
 	
 	
-	public void Excluir(ActionEvent evento) {
+	public void excluir(ActionEvent evento) {
 		try {
 			linha = (Linha) evento.getComponent().getAttributes().get("linhaSelecionada");
 			Messages.addGlobalInfo("Descrição: " + linha.getDescricao());
 
 			LinhaDAO linhaDAO = new LinhaDAO();
-			linhaDAO.Excluir(linha);
+			linhaDAO.excluir(linha);
 
-			linhas = linhaDAO.Listar();
+			linhas = linhaDAO.listar();
 
 			Messages.addGlobalInfo("Linha removida com sucesso ");
 		} catch (RuntimeException erro) {

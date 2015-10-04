@@ -27,10 +27,10 @@ public class PedidoBean implements Serializable {
 	public void novo() {
 		pedido = new Pedido();
 	}
-	public void Salvar() {
+	public void salvar() {
 		try {
 			PedidoDAO pedidoDAO = new PedidoDAO();
-			pedidoDAO.Merge(pedido);
+			pedidoDAO.merge(pedido);
 
 			
 

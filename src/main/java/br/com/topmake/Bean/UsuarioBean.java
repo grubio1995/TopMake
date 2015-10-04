@@ -29,7 +29,7 @@ public class UsuarioBean implements Serializable {
 	public void Salvar() {
 		try {
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			usuarioDAO.Merge(usuario);
+			usuarioDAO.merge(usuario);
 
 			
 

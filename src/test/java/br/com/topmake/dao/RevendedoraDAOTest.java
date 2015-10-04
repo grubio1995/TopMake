@@ -13,7 +13,7 @@ public class RevendedoraDAOTest {
 		Integer usuarioCodigo = 4;
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		Usuario usuario = usuarioDAO.Buscar(usuarioCodigo);
+		Usuario usuario = usuarioDAO.buscar(usuarioCodigo);
 		
 		if (usuario == null) {
 			System.out.println("Nenhum usuário encontrado!");
@@ -23,7 +23,7 @@ public class RevendedoraDAOTest {
 			revendedora.setUsuario(usuario);
 			
 			RevendedoraDAO revendedoraDAO = new RevendedoraDAO();
-			revendedoraDAO.Salvar(revendedora);		
+			revendedoraDAO.salvar(revendedora);		
 			System.out.println("Revendedora salva com sucesso!");
 		}
 	}
@@ -32,7 +32,7 @@ public class RevendedoraDAOTest {
 	@Ignore
 	public void listar() {
 		RevendedoraDAO revendedoraDAO = new RevendedoraDAO();
-		List<Revendedora> resultado = revendedoraDAO.Listar();
+		List<Revendedora> resultado = revendedoraDAO.listar();
 		
 		System.out.println("Total de revendedoras encontradas: " + resultado.size());
 		
@@ -49,7 +49,7 @@ public class RevendedoraDAOTest {
 		Integer revendedoraCodigo = 2;
 		
 		RevendedoraDAO revendedoraDAO = new RevendedoraDAO();
-		Revendedora revendedora = revendedoraDAO.Buscar(revendedoraCodigo);
+		Revendedora revendedora = revendedoraDAO.buscar(revendedoraCodigo);
 
 		if(revendedora == null) {
 			System.out.println("Nenhuma revendedora encontrada!");
@@ -67,13 +67,13 @@ public class RevendedoraDAOTest {
 		Integer revendedoraCodigo = 3;
 		
 		RevendedoraDAO revendedoraDAO = new RevendedoraDAO();		
-		Revendedora revendedora = revendedoraDAO.Buscar(revendedoraCodigo);
+		Revendedora revendedora = revendedoraDAO.buscar(revendedoraCodigo);
 		
 		if (revendedora == null) {
 			System.out.println("Nenhuma revendedora encontrado!");
 		}
 		else {
-			revendedoraDAO.Excluir(revendedora);
+			revendedoraDAO.excluir(revendedora);
 			System.out.println("Revendedora removida com sucesso!");
 		}
 	}
@@ -87,7 +87,7 @@ public class RevendedoraDAOTest {
 		String revendedoraSenha = "admin";
 		
 		RevendedoraDAO revendedoraDAO = new RevendedoraDAO();
-		Revendedora revendedora = revendedoraDAO.Buscar(revendedoraCodigo);
+		Revendedora revendedora = revendedoraDAO.buscar(revendedoraCodigo);
 		
 		if (revendedora == null) {
 			System.out.println("Nenhuma revendedora encontrada!");
@@ -96,7 +96,7 @@ public class RevendedoraDAOTest {
 			Integer usuarioCodigo = revendedora.getUsuario().getCodigo().intValue();
 			
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			Usuario usuario = usuarioDAO.Buscar(usuarioCodigo);
+			Usuario usuario = usuarioDAO.buscar(usuarioCodigo);
 			
 			if (usuario == null) {
 				System.out.println("Nenhum usuário encontrado!");
@@ -107,8 +107,8 @@ public class RevendedoraDAOTest {
 				usuario.setSenha(revendedoraSenha);
 				revendedora.setUsuario(usuario);
 				
-				usuarioDAO.Editar(usuario);
-				revendedoraDAO.Editar(revendedora);
+				usuarioDAO.editar(usuario);
+				revendedoraDAO.editar(revendedora);
 				System.out.println("Revendedora editada com sucesso!");
 			}
 			

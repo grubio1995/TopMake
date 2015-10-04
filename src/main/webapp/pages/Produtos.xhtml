@@ -16,7 +16,7 @@
 				paginator="true">
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
-						actionListener="#{categoriaBean.Novo()}"
+						actionListener="#{categoriaBean.novo()}"
 						update=":formCadastro:painel" />
 				</f:facet>
 
@@ -88,7 +88,7 @@
 			</h:panelGrid>
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar"
-					actionListener="#{categoriaBean.Salvar}"
+					actionListener="#{categoriaBean.salvar}"
 					update=":mensagem :formCadastro:painel" />
 				<p:commandButton value="Fechar" oncomplete="PF ('dialogo').hide();" />
 			</h:panelGrid>

@@ -22,14 +22,14 @@ public class ProdutoDAOTest {
 		Short produtoQtdMinima = 6;
 		
 		CategoriaDAO categoriaDAO = new CategoriaDAO();
-		Categoria categoria = categoriaDAO.Buscar(categoriaCodigo);
+		Categoria categoria = categoriaDAO.buscar(categoriaCodigo);
 		
 		if (categoria == null) {
 			System.out.println("Nenhuma categoria encontrado!");
 		}
 		else {
 			LinhaDAO linhaDAO = new LinhaDAO();
-			Linha linha = linhaDAO.Buscar(linhaCodigo);
+			Linha linha = linhaDAO.buscar(linhaCodigo);
 			
 			if (linha == null) {
 				System.out.println("Nenhuma linha encontrado!");
@@ -46,7 +46,7 @@ public class ProdutoDAOTest {
 				produto.setQtdMinima(produtoQtdMinima);
 				
 				ProdutoDAO produtoDAO = new ProdutoDAO();
-				produtoDAO.Salvar(produto);
+				produtoDAO.salvar(produto);
 				System.out.println("Produto salvo com sucesso!");
 			}			
 		}
@@ -56,7 +56,7 @@ public class ProdutoDAOTest {
 	@Ignore
 	public void listar() {
 		ProdutoDAO produtoDAO = new ProdutoDAO();
-		List<Produto> resultado = produtoDAO.Listar();
+		List<Produto> resultado = produtoDAO.listar();
 		
 		System.out.println("Total de produtos encontrados: " + resultado.size());
 		
@@ -81,7 +81,7 @@ public class ProdutoDAOTest {
 		Integer produtoCodigo = 2;
 		
 		ProdutoDAO produtoDAO = new ProdutoDAO();
-		Produto produto = produtoDAO.Buscar(produtoCodigo);
+		Produto produto = produtoDAO.buscar(produtoCodigo);
 		
 		if (produto == null) {
 			System.out.println("Nenhum produto encontrado!");
@@ -105,13 +105,13 @@ public class ProdutoDAOTest {
 		Integer produtoCodigo = 3;
 		
 		ProdutoDAO produtoDAO = new ProdutoDAO();
-		Produto produto = produtoDAO.Buscar(produtoCodigo);
+		Produto produto = produtoDAO.buscar(produtoCodigo);
 		
 		if (produto == null) {
 			System.out.println("Nenhum produto encontrado!");
 		}
 		else {
-			produtoDAO.Excluir(produto);
+			produtoDAO.excluir(produto);
 			System.out.println("Produto removido com sucesso!");			
 		}		
 	}
@@ -127,21 +127,21 @@ public class ProdutoDAOTest {
 		String produtoDescricao = "Com cheiro";
 		
 		ProdutoDAO produtoDAO = new ProdutoDAO();
-		Produto produto = produtoDAO.Buscar(produtoCodigo);
+		Produto produto = produtoDAO.buscar(produtoCodigo);
 		
 		if (produto == null) {
 			System.out.println("Nenhum produto encontrado!");
 		}
 		else {
 			CategoriaDAO categoriaDAO = new CategoriaDAO();
-			Categoria categoria = categoriaDAO.Buscar(categoriaCodigo);		
+			Categoria categoria = categoriaDAO.buscar(categoriaCodigo);		
 			
 			if (categoria == null) {
 				System.out.println("Nenhuma categoria encontrado!");
 			}
 			else {
 				LinhaDAO linhaDAO = new LinhaDAO();
-				Linha linha = linhaDAO.Buscar(linhaCodigo);
+				Linha linha = linhaDAO.buscar(linhaCodigo);
 				
 				if (linha == null) {
 					System.out.println("Nenhuma linha encontrado!");
@@ -153,7 +153,7 @@ public class ProdutoDAOTest {
 					produto.setCategoria(categoria);
 					produto.setLinha(linha);
 					
-					produtoDAO.Editar(produto);
+					produtoDAO.editar(produto);
 					System.out.println("Produto editado com sucesso!");				
 				}
 			}

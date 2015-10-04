@@ -18,7 +18,7 @@
 				
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
-						actionListener="#{linhaBean.Listar()}"
+						actionListener="#{linhaBean.listar()}"
 						update=":mensagem :formCadastro:painel :formListagem:tabela" />
 				</f:facet>
 
@@ -30,7 +30,7 @@
 				<p:column headerText="Opções">
 
 					<p:commandButton icon="ui-icon-trash"
-						actionListener="#{linhaBean.Excluir}"
+						actionListener="#{linhaBean.excluir}"
 						update=":mensagem :formListagem:tabela" >
 						<p:confirm header="Confirmação" message="Deseja excluir a linha?"
 							icon="ui-icon-alert" />
@@ -67,7 +67,7 @@
 
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar"
-					actionListener="#{linhaBean.Salvar()}"
+					actionListener="#{linhaBean.salvar()}"
 					update=":mensagem :formCadastro:painel :formListagem:tabela" />
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</h:panelGrid>
