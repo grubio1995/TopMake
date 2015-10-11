@@ -22,14 +22,25 @@
 						update=":formCadastro:painel" />
 				</f:facet>
 
-				<p:column headerText="" sortBy="#{StatusBean.}"
-					filterBy="#{status.}">
-					<h:outputText value="#{status.}" />
+			<p:column headerText="Descrição" sortBy="#{status.descricao}"
+					filterBy="#{status.descricao}">
+					<h:outputText value="#{status.descricao}" />
 				</p:column>
 
 				<p:column headerText="Opções">
 
-					<p:commandButton />
+					<p:commandButton icon="ui-icon-trash"
+						actionListener="#{statusBean.excluir}"
+						update=":mensagem :formListagem:tabela" >
+						<p:confirm header="Confirmação" message="Deseja excluir o status?"
+							icon="ui-icon-alert" />
+						<f:attribute name="statusSelecionado" value="#{status}" />
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-pencil" actionListener="#{statusBean.editar}"
+						update=":mensagem :formCadastro:painel" oncomplete="PF('dialogo').show();">
+						<f:attribute name="statusSelecionado" value="#{status}" />
+					</p:commandButton>
 
 				</p:column>
 			</p:dataTable>
@@ -49,7 +60,8 @@
 		<h:form id="formCadastro">
 			<h:panelGrid id="painel" columns="2">
 				<p:outputLabel value="Descrição:" />
-				<p:inputText maxlength="50" size="30"/>
+				<p:inputText maxlength="50" size="30"
+				value="#{statusBean.status.descricao}" />
 
 			</h:panelGrid>
 
