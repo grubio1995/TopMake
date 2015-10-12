@@ -6,28 +6,73 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Pedido</title>
+	<title>Pedidos</title>
 </h:head>
 <h:body>
 	<p:growl id="mensagem" />
-	<h:form>
-		<p:panel header="Pedido">
-			<p:dataTable emptyMessage="Nenhum registro escontrado."
-				paginator="true">
-				<f:facet name="header">
-					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
-						actionListener="#{categoriaBean.novo()}"
-						update=":formCadastro:painel" />
-				</f:facet>
+	<h:form id="formListagem">
+		<p:panel header="Pedidos - Listagem" id="panelListagem">
+			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado" paginator="True" value="#{pedidoBean.pedidos}"
+			var="pedido" rows="20">
+			
+				<p:column headerText="Cliente" filterBy="#{pedido.cliente.usuario.nome}" sortBy="#{pedido.cliente.usuario.nome}">
+					<p:outputLabel value="#{pedido.cliente.usuario.nome}" />
+				</p:column>			
+				<p:column headerText="Data pedido">
+					<p:outputLabel value="#{pedido.dataPedido}" />
+				</p:column>
+
+,				<p:column headerText="Status Pedido">
+					<p:outputLabel value="#{pedido.status.descricao}" />
+				</p:column>
+				
+				<p:column headerText="Situação pagamento">
+					<p:outputLabel value="#{pedido.pagamento.situacao}" />
+				</p:column>
+
+				<p:column headerText="Valor pedido">
+					<p:outputLabel value="#{pedido.valorTotal}" />
+				</p:column>
 
 				<p:column headerText="Opções ">
+					
+					<p:commandButton icon="ui-icon-cancel" actionListener="#{pedidoBean.excluir}" update=":mensagem :formListagem:tabela" >
+						<p:confirm header="Confirmação" message="Deseja cancelar o Pedido" icon="ui-icon-cancel" />
+						<f:attribute name="pedidoSelecionado" value="#{pedido}" />
+					</p:commandButton>
+				
+					<p:commandButton icon="ui-icon-extlink" update=":formItensPedido" oncomplete="PF('dialogoItens').show();">
+						<f:attribute name="pedidoSelecionado" value="#{pedido}" />
+					</p:commandButton>
+				
 				</p:column>
 
 			</p:dataTable>
+			
+			<p:confirmDialog global="true">
+				<center>
+					<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+					<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+				</center>
+			</p:confirmDialog>
+			
+			
 		</p:panel>
 	</h:form>
 
-
+	<p:dialog header="Pedido" widgetVar="dialogoItens" draggable="false"
+		resizable="false" modal="true" closable="false">
+		<h:form id="formItensPedido">
+			<center>
+				<h:panelGrid>
+					<p:outputLabel value="Todos os itens do Pedido aparecerão aqui, ou talvez em outra janela" />
+				</h:panelGrid>
+				<p:commandButton value="Fechar" oncomplete="PF('dialogoItens').hide();" />
+			</center>
+		</h:form>
+	</p:dialog>
+	
+	
 	<p:dialog header="Pedido" widgetVar="dialogo" draggable="false"
 		resizable="false" modal="true" closable="false">
 		<h:form id="formCadastro">
@@ -37,6 +82,7 @@
 				<p:inputText maxlength="8" size="10" />
 
 				<p:outputLabel value="Data do Pedido:" />
+
 				<p:calendar />
 
 				<p:outputLabel value="Status:" />
@@ -55,12 +101,14 @@
 				</p:selectOneMenu>
 
 			</h:panelGrid>
+			<center>
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar"
 					actionListener="#{categoriaBean.salvar}"
 					update=":mensagem :formCadastro:painel" />
-				<p:commandButton value="Fechar" oncomplete="PF ('dialogo').hide();" />
+				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</h:panelGrid>
+			</center>
 		</h:form>
 	</p:dialog>
 </h:body>

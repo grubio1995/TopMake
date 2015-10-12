@@ -9,9 +9,9 @@ import br.com.topmake.domain.Usuario;
 
 public class ClienteDAOTest {
 	@Test
-	@Ignore
+	//@Ignore
 	public void salvar() {
-		Integer usuarioCodigo = 2;
+		Integer usuarioCodigo = 1;
 		
 		String clienteBairro = "Teste";
 		String clienteCelular = "Teste";
@@ -19,7 +19,7 @@ public class ClienteDAOTest {
 		String clienteCidade = "Teste";
 		String clienteCpf = "Teste";
 		Date clienteDataNascimento = new Date();
-		String clienteEstado = "Teste";
+		String clienteEstado = "SP";
 		String clienteEstadoCivil = "Teste";
 		String clienteRg = "Teste";
 		Character clienteSexo = 'M';
@@ -87,7 +87,7 @@ public class ClienteDAOTest {
 	@Test
 	@Ignore
 	public void buscar() {
-		Integer clienteCodigo = 2;
+		Integer clienteCodigo = 1;
 		
 		ClienteDAO clienteDAO = new ClienteDAO();
 		Cliente cliente = clienteDAO.buscar(clienteCodigo);

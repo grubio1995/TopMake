@@ -15,51 +15,53 @@ public class PedidoDAOTest {
 	@Test
 	@Ignore
 	public void salvar() {
-		Integer pagamentoCodigo = 2;
-		Integer clienteCodigo = 2;
+		Integer pagamentoCodigo = 1;
+		Integer clienteCodigo = 1;
 		Integer statusCodigo = 1;
 		Date pedidoDataPedido = new Date();
 		Date pedidoDataVenda = new Date();
 		BigDecimal pedidoValorTotal = new BigDecimal(100.00);
 		
+
 		PagamentoDAO pagamentoDAO = new PagamentoDAO();
 		Pagamento pagamento = pagamentoDAO.buscar(pagamentoCodigo);
 		
-		if (pagamento == null) {
+		if (pagamento == null) 
 			System.out.println("Nenhum pagamento encontrado!");				
-		}
-		else {
-			ClienteDAO clienteDAO = new ClienteDAO();		
-			Cliente cliente = clienteDAO.buscar(clienteCodigo);
+		
+		
+		ClienteDAO clienteDAO = new ClienteDAO();		
+		Cliente cliente = clienteDAO.buscar(clienteCodigo);
+		
+		if (cliente == null) 
+			System.out.println("Nenhum cliente encontrado!");				
+		
+		
 			
-			if (cliente == null) {
-				System.out.println("Nenhum cliente encontrado!");				
-			}
-			else {
-				StatusDAO statusDAO = new StatusDAO();
-				Status status = statusDAO.buscar(statusCodigo);
-				if (status == null) {
-					System.out.println("Nenhum status encontrado!");					
-				}
-				else {
-					Pedido pedido = new Pedido();
-					pedido.setPagamento(pagamento);
-					pedido.setDataPedido(pedidoDataPedido);
-					pedido.setDataVenda(pedidoDataVenda);
-					pedido.setStatus(status);
-					pedido.setCliente(cliente);
-					pedido.setValorTotal(pedidoValorTotal);
+		StatusDAO statusDAO = new StatusDAO();
+		Status status = statusDAO.buscar(statusCodigo);
+			
+		if (status == null) 
+			System.out.println("Nenhum status encontrado!");					
+
+		Pedido pedido = new Pedido();
+		pedido.setPagamento(pagamento);
+		pedido.setDataPedido(pedidoDataPedido);
+		pedido.setDataVenda(pedidoDataVenda);
+		pedido.setStatus(status);
+		pedido.setCliente(cliente);
+		pedido.setValorTotal(pedidoValorTotal);
+		
+		PedidoDAO pedidoDAO = new PedidoDAO();
+		pedidoDAO.salvar(pedido);
+		System.out.println("Pedido salvo com sucesso!");
+	}				
 					
-					PedidoDAO pedidoDAO = new PedidoDAO();
-					pedidoDAO.salvar(pedido);
-					System.out.println("Pedido salvo com sucesso!");
-				}				
-			}			
-		}		
-	}
+			
+	
 
 	@Test
-	@Ignore
+	//@Ignore
 	public void listar() {
 		
 		PedidoDAO pedidoDAO = new PedidoDAO();

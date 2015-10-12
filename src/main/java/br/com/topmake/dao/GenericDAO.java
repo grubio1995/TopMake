@@ -71,7 +71,9 @@ public class GenericDAO<Entidade> {
 			return resultado;
 		}
 		catch(RuntimeException erro) {
+			System.out.println("ERRO NA BUSCA -DAO-" + erro);
 			throw erro;
+
 		}
 		finally {
 			sessao.close();
