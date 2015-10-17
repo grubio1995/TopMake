@@ -35,6 +35,11 @@ public class CategoriaBean implements Serializable {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+
+	public void novo() {
+		categoria = new Categoria();
+	}
+	
 	@PostConstruct
 	public void Listar() {
 		try {
@@ -45,10 +50,6 @@ public class CategoriaBean implements Serializable {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar as categorias!!");
 			erro.printStackTrace();
 		}
-	}
-
-	public void novo() {
-		categoria = new Categoria();
 	}
 
 	public void salvar() {
@@ -77,7 +78,7 @@ public class CategoriaBean implements Serializable {
 
 			categorias = categoriaDAO.listar();
 
-			Messages.addGlobalInfo("Categoria removida com sucesso ");
+			Messages.addGlobalInfo("Categoria removida com sucesso");
 		} catch (RuntimeException erro) {
 			Messages.addGlobalInfo("Ocorreu um erro ao tentar remover a Categoria" + erro);
 			erro.printStackTrace();

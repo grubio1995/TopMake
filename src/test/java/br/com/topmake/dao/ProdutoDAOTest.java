@@ -10,10 +10,10 @@ import br.com.topmake.domain.Categoria;
 
 public class ProdutoDAOTest {
 	@Test
-	@Ignore
+	//@Ignore
 	public void salvar() {
-		Integer linhaCodigo = 2;
-		Integer categoriaCodigo = 2;
+		Integer linhaCodigo = 1;
+		Integer categoriaCodigo = 1;
 		BigDecimal produtoPrecoVenda = new BigDecimal(999.99);
 		String produtoNome = "Maquiagem";
 		String produtoDescricao = "Maquiagem para o rosto";
@@ -33,8 +33,7 @@ public class ProdutoDAOTest {
 			
 			if (linha == null) {
 				System.out.println("Nenhuma linha encontrado!");
-			}
-			else {
+			}else {
 				Produto produto = new Produto();
 				produto.setNome(produtoNome);
 				produto.setDescricao(produtoDescricao);

@@ -9,7 +9,7 @@ import br.com.topmake.domain.Categoria;
 
 public class CategoriaDAOTest {
 	@Test
-	@Ignore
+	//@Ignore
 	public void salvar() {
 		String categoriaDescricao = "Fragância";
 		

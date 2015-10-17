@@ -15,10 +15,10 @@
 		<p:panel header="Categoria - Listagem">
 			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
 				paginator="true" value="#{categoriaBean.categorias}" var="categoria" rows="6">
-				
+
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
-						actionListener="#{categoriaBean.novo()}"
+						actionListener="#{categoriaBean.novo}"
 						update=":formCadastro:painel" />
 				</f:facet>
 
@@ -28,7 +28,6 @@
 				</p:column>
 
 				<p:column headerText="Opções">
-
 					<p:commandButton icon="ui-icon-trash"
 						actionListener="#{categoriaBean.excluir}"
 						update=":mensagem :formListagem:tabela" >

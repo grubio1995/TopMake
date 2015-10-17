@@ -2,14 +2,11 @@ package br.com.topmake.Bean;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
-
 import org.omnifaces.util.Messages;
-
 import br.com.topmake.dao.LinhaDAO;
 import br.com.topmake.domain.Linha;
 
@@ -36,7 +33,7 @@ public class LinhaBean implements Serializable {
 		this.linhas = linhas;
 	}
 
-	public void Novo() {
+	public void novo() {
 		linha = new Linha();
 	}
 	
@@ -51,10 +48,6 @@ public class LinhaBean implements Serializable {
 			erro.printStackTrace();
 		}
 	}
-	
-	public void novo() {
-		linha = new Linha();
-	}
 
 	public void salvar() {
 		try {
@@ -64,9 +57,9 @@ public class LinhaBean implements Serializable {
 			linha = new Linha();
 			linhas = linhaDAO.listar();
 
-			Messages.addGlobalInfo("A linha " + linha.getDescricao() + " foi salva com sucesso!!!");
+			Messages.addGlobalInfo("A linha foi salva com sucesso!");
 		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Ocorreu um erro ao tentar salvar a linha!!!");
+			Messages.addGlobalError("Ocorreu um erro ao tentar salvar a linha!");
 			erro.printStackTrace();
 		}
 	}
@@ -75,8 +68,7 @@ public class LinhaBean implements Serializable {
 	public void excluir(ActionEvent evento) {
 		try {
 			linha = (Linha) evento.getComponent().getAttributes().get("linhaSelecionada");
-			Messages.addGlobalInfo("Descrição: " + linha.getDescricao());
-
+			
 			LinhaDAO linhaDAO = new LinhaDAO();
 			linhaDAO.excluir(linha);
 

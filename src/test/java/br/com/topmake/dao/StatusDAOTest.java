@@ -7,7 +7,7 @@ import br.com.topmake.domain.Status;
 
 public class StatusDAOTest {
 	@Test
-	@Ignore
+	//@Ignore
 	public void salvar() {
 		String statusDescricao = "Aguardando pagamento";
 		
