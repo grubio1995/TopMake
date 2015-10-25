@@ -16,7 +16,7 @@ import br.com.topmake.domain.Pedido;
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
-public class PedidoBean implements Serializable {
+public class ListagemPedidoBean implements Serializable {
 	private Pedido pedido;
 	private List<Pedido> pedidos;
 
@@ -63,22 +63,7 @@ public class PedidoBean implements Serializable {
 			erro.printStackTrace();
 		}
 	}
-	public void excluir(ActionEvent evento) {
-		try {
-			pedido = (Pedido) evento.getComponent().getAttributes().get("pedidoSelecionada");
-			Messages.addGlobalInfo("O Pedido do cliente: " + pedido.getCliente().getUsuario().getNome() + " foi excluido!");
 
-			PedidoDAO pedidosDAO = new PedidoDAO();
-			pedidosDAO.excluir(pedido);
-
-			pedidos = pedidosDAO.listar();
-
-			Messages.addGlobalInfo("Categoria removida com sucesso ");
-		} catch (RuntimeException erro) {
-			Messages.addGlobalInfo("Ocorreu um erro ao tentar remover a Categoria" + erro);
-			erro.printStackTrace();
-		}
-	}
 
 	public void editar(ActionEvent evento) {
 		pedido = (Pedido) evento.getComponent().getAttributes().get("pedidoSelecionada");

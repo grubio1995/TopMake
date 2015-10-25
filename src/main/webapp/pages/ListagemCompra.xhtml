@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Compras</title>
+</h:head>
+<h:body>
+	<p:growl id="mensagem" />
+	<h:form id="formListagem">
+	<p:panel header="Compras - Listagem" id="panelListagem">
+			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado" paginator="True" value="#{compraBean.compras}"
+			var="compra" rows="20">
+			
+			<p:column headerText="Data da Compra">
+					<p:outputLabel value="#{compra.dataCompra}" />
+				</p:column>
+
+				<p:column headerText="Preco Total ">
+				<p:outputLabel value="#{compra.precoTotal}" />
+				</p:column>
+
+				<p:column headerText="Opções ">
+				<p:commandButton icon="ui-icon-cancel" actionListener="#{compraBean.excluir}" update=":mensagem :formListagem:tabela" >
+						<p:confirm header="Confirmação" message="Deseja cancelar a Compra?" icon="ui-icon-cancel" />
+						<f:attribute name="compraSelecionada" value="#{compra}" />
+					</p:commandButton>
+				
+					<p:commandButton icon="ui-icon-extlink" update=":formItensCompra" oncomplete="PF('dialogoItens').show();">
+						<f:attribute name="compraSelecionada" value="#{compra}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+			
+			<p:confirmDialog global="true">
+				<center>
+					<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+					<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+				</center>
+			</p:confirmDialog>
+			
+		</p:panel>
+	</h:form>
+<p:dialog header="Itens Compra" widgetVar="dialogoItens" draggable="false"
+		resizable="false" modal="true" closable="false">
+		<h:form id="formItensCompra">
+			<center>
+				<p:outputLabel value="Muito provavelmente será implementado em outra janela" />
+				<h:panelGrid header="Itens Compra - Listagem" id="panelListagemItens">
+					<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado" paginator="True" value="#{itensCompraBean.itensCompras}"
+					var="itens" rows="20">
+
+
+				<p:column headerText="Produto" filterBy="#{itens.produto.nome}" sortBy="#{itens.produto.nome}">
+						<p:outputLabel value="#{itens.produto.nome}" />
+					</p:column>
+	
+					<p:column headerText="Quantidade" >
+						<p:outputLabel value="#{itens.qtdProduto}" />
+					</p:column>
+					
+					<p:column headerText="Preço" >
+						<p:outputLabel value="#{itens.valorProduto}" />
+					</p:column>
+					
+	
+					<p:column headerText="Opções ">
+						
+						<p:commandButton icon="ui-icon-cancel" actionListener="#{compraBean.excluir}" update=":mensagem :formListagem:tabela" >
+							<p:confirm header="Confirmação" message="Deseja cancelar a Compra?" icon="ui-icon-cancel" />
+							<f:attribute name="compraSelecionada" value="#{compra}" />
+						</p:commandButton>
+					
+						<p:commandButton icon="ui-icon-extlink" update=":formItensCompra" oncomplete="PF('dialogoItens').show();">
+							<f:attribute name="compraSelecionada" value="#{compra}" />
+						</p:commandButton>
+								
+					</p:column>
+
+					</p:dataTable>
+				</h:panelGrid>
+				<p:commandButton value="Fechar" oncomplete="PF('dialogoItens').hide();" />
+			</center>
+		</h:form>
+	</p:dialog>
+	
+	
+</h:body>
+</html>
