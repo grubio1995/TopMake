@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cliente</title>
+</h:head>
+<h:body>
+	<p:growl id="mensagem" />
+
+	<h:form id="formListagem">
+		<p:panel header="Cliente - Listagem">
+
+			<p:dataTable id="tabela" emptyMessage="Nenhum registro escontrado."
+				paginator="true" value="#{clienteBean.clientes}" var="cliente"
+				rows="5">
+
+				<f:facet name="header">
+					<p:commandButton value="Novo"
+						actionListener="#{clienteBean.novo()}"
+						oncomplete="PF('dialogo').show()"
+						update=":mensagem :formCadastro:painel" />
+				</f:facet>
+
+				<p:column headerText="Cidade" filterBy="#{cliente.cidade}"
+					sortBy="#{cliente.cidade}">
+					<h:outputText value="#{cliente.cidade}" />
+				</p:column>
+
+				<p:column headerText="Estado" filterBy="#{cliente.estado}"
+					sortBy="#{cliente.estado}">
+					<h:outputText value="#{cliente.estado}" />
+				</p:column>
+
+				<p:column headerText="Celular" filterBy="#{cliente.celular}"
+					sortBy="#{cliente.celular}">
+					<h:outputText value="#{cliente.celular}" />
+				</p:column>
+
+				<p:column headerText="CPF" filterBy="#{cliente.cpf}"
+					sortBy="#{cliente.cpf}">
+					<h:outputText value="#{cliente.cpf}" />
+				</p:column>
+
+				<p:column headerText="Usuário" filterBy="#{cliente.usuario.login}"
+					sortBy="#{cliente.usuario.login}">
+					<h:outputText value="#{cliente.usuario.login}" />
+				</p:column>
+
+				<p:column headerText="Opções">
+					<p:commandButton icon="ui-icon-trash"
+						actionListener="#{clienteBean.excluir}"
+						update=":mensagem :formListagem:tabela">
+						<p:confirm header="Confirmação"
+							message="Deseja excluir o cliente ?" icon="ui-icon-alert" />
+						<f:attribute name="clienteSelecionado" value="#{cliente}" />
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-pencil"
+						actionListener="#{clienteBean.editar}"
+						update=":mensagem :formCadastro:painel"
+						oncomplete="PF('dialogo').show();">
+						<f:attribute name="clienteSelecionado" value="#{cliente}" />
+					</p:commandButton>
+
+				</p:column>
+			</p:dataTable>
+
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+
+		</p:panel>
+	</h:form>
+
+
+	<p:dialog header="Clientes - Cadastro" widgetVar="dialogo"
+		draggable="false" resizable="false" modal="true" closable="false">
+		<h:form id="formCadastro">
+			<h:panelGrid id="painel" columns="2">
+
+				<p:outputLabel value="Bairro: " />
+				<p:inputText maxlength="50" size="30"
+					value="#{clienteBean.cliente.bairro}" />
+
+				<p:outputLabel value="CEP: " />
+				<p:inputText maxlength="10" size="20"
+					value="#{clienteBean.cliente.cep}" />
+
+				<p:outputLabel value="Cidade: " />
+				<p:inputText maxlength="30" size="40"
+					value="#{clienteBean.cliente.cidade}" />
+
+				<p:outputLabel value="Estado: " />
+				<p:inputText maxlength="2" size="4"
+					value="#{clienteBean.cliente.estado}" />
+
+				<p:outputLabel value="Telefone: " />
+				<p:inputText maxlength="15" size="30"
+					value="#{clienteBean.cliente.telefone}" />
+
+				<p:outputLabel value="Celular: " />
+				<p:inputText maxlength="15" size="30"
+					value="#{clienteBean.cliente.celular}" />
+
+				<p:outputLabel value="Sexo:" />
+				<p:selectOneRadio value="#{clienteBean.cliente.sexo}">
+					<f:selectItem itemValue="M" itemLabel="Masculino" />
+					<f:selectItem itemValue="F" itemLabel="Feminino" />
+				</p:selectOneRadio>
+
+				<p:outputLabel value="CPF: " />
+				<p:inputText maxlength="11" size="20"
+					value="#{clienteBean.cliente.cpf}" />
+
+				<p:outputLabel value="RG: " />
+				<p:inputText maxlength="11" size="20"
+					value="#{clienteBean.cliente.rg}" />
+				
+			<p:outputLabel for="dataNascimento" value="Data de Nascimentoa:" />
+				<p:calendar id="dataNascimento"
+					value="#{clienteBean.cliente.dataNascimento}" size="10" />
+
+
+				<p:outputLabel value="Estado Civil: " />
+				<p:inputText maxlength="20" size="20"
+					value="#{clienteBean.cliente.estadoCivil}" />
+
+				<p:outputLabel value="Usuário: " />
+				<p:selectOneMenu filter="true"
+					value="#{clienteBean.cliente.usuario}"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItem noSelectionOption="true"
+						itemLabel="Selecione um usuário" />
+					<f:selectItems value="#{clienteBean.usuarios}" var="usuario"
+						itemValue="#{usuario}"
+						itemLabel="#{usuario.login} - #{usuario.tipoUsuario}" />
+				</p:selectOneMenu>
+			</h:panelGrid>
+
+			<h:panelGrid columns="2">
+				<p:commandButton value="Salvar"
+					actionListener="#{clienteBean.salvar()}"
+					update=":mensagem :formCadastro:painel :formListagem:tabela" />
+				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide()" />
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+
+</h:body>
+</html>

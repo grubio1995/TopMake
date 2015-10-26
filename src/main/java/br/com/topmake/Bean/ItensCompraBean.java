@@ -1,7 +1,21 @@
 package br.com.topmake.Bean;
 
+import javax.faces.event.ActionEvent;
 import java.io.Serializable;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
+import org.omnifaces.util.Messages;
+
+import br.com.topmake.dao.ItensCompraDAO;
+import br.com.topmake.domain.ItensCompra;
+
+@SuppressWarnings("serial")
+@ManagedBean
+@ViewScoped
 public class ItensCompraBean implements Serializable{
 	
 	private ItensCompra itensCompra;
@@ -37,14 +51,13 @@ public class ItensCompraBean implements Serializable{
 	
 	public void salvar() {
 		try {
-			ItensPedidoDAO itensPedidoDAO = new ItensPedidoDAO();
-			itensPedidoDAO.merge(itensPedido);
+			ItensCompraDAO itensCompraDAO = new ItensCompraDAO();
+			itensCompraDAO.merge(itensCompra);
 
-			
-			itensPedidos = itensPedidoDAO.listar();
+			itensCompras = itensCompraDAO.listar();
 			
 
-			Messages.addGlobalInfo("O Item " + itensPedido.getProduto().getNome() + " foi adicionado com sucesso! ");
+			Messages.addGlobalInfo("O Item " + itensCompra.getProduto().getNome() + " foi adicionado com sucesso! ");
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar adicionar o item!!!");
 			erro.printStackTrace();
@@ -58,7 +71,7 @@ public class ItensCompraBean implements Serializable{
 			ItensCompraDAO itensCompraDAO = new ItensCompraDAO();
 			itensCompraDAO.excluir(itensCompra);
 
-			itensCompra = itensCompraDAO.listar();
+			itensCompras = itensCompraDAO.listar();
 
 			Messages.addGlobalInfo("Item removido com sucesso");
 		} catch (RuntimeException erro) {
