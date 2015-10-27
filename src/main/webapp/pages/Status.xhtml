@@ -8,18 +8,22 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Status</title>
 </h:head>
-<h:body> 
+<h:body>
 	<p:growl id="mensagem" />
 
 	<h:form id="formListagem">
 		<p:panel header="Status - Listagem">
 			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
 				paginator="true" value="#{statusBean.statuss}" var="status" rows="6">
-				
+
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
 						actionListener="#{statusBean.novo()}"
-						update=":formCadastro:painel" />
+						update=":formCadastro:painel">
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
+
 				</f:facet>
 
 				<p:column headerText="Descrição" sortBy="#{status.descricao}"
@@ -31,15 +35,19 @@
 
 					<p:commandButton icon="ui-icon-trash"
 						actionListener="#{statusBean.excluir}"
-						update=":mensagem :formListagem:tabela" >
+						update=":mensagem :formListagem:tabela">
 						<p:confirm header="Confirmação" message="Deseja excluir o status?"
 							icon="ui-icon-alert" />
 						<f:attribute name="statusSelecionado" value="#{status}" />
 					</p:commandButton>
 
-					<p:commandButton icon="ui-icon-pencil" actionListener="#{statusBean.editar}"
-						update=":mensagem :formCadastro:painel" oncomplete="PF('dialogo').show();">
+					<p:commandButton icon="ui-icon-pencil"
+						actionListener="#{statusBean.editar}"
+						update=":mensagem :formCadastro:painel"
+						oncomplete="PF('dialogo').show();">
 						<f:attribute name="statusSelecionado" value="#{status}" />
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
 
 				</p:column>
@@ -59,9 +67,11 @@
 
 		<h:form id="formCadastro">
 			<h:panelGrid id="painel" columns="2">
-				<p:outputLabel value="Descrição:" />
-				<p:inputText maxlength="50" size="30"
-				value="#{statusBean.status.descricao}" />
+				
+				<p:outputLabel for="Descrição" value="Descrição:" />
+				<p:inputText id="Descrição" maxlength="50" size="30"
+					value="#{statusBean.status.descricao}" required="true"
+					requiredMessage="O campo 'Descrição é obrigatorio" />
 
 			</h:panelGrid>
 

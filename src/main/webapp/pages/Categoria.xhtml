@@ -14,14 +14,19 @@
 	<h:form id="formListagem">
 		<p:panel header="Categoria - Listagem">
 			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
-				paginator="true" value="#{categoriaBean.categorias}" var="categoria" rows="6">
+				paginator="true" value="#{categoriaBean.categorias}" var="categoria"
+				rows="6">
 
 				<f:facet name="header">
-					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
+					<p:commandButton value="Novo" 
 						actionListener="#{categoriaBean.novo}"
-						update=":formCadastro:painel" />
-				</f:facet>
+						update=":mensagem :formCadastro:painel"
+						oncomplete="PF('dialogo').show();" >
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 
+				</f:facet>
 				<p:column headerText="Descrição" sortBy="#{categoria.descricao}"
 					filterBy="#{categoria.descricao}">
 					<h:outputText value="#{categoria.descricao}" />
@@ -30,15 +35,19 @@
 				<p:column headerText="Opções">
 					<p:commandButton icon="ui-icon-trash"
 						actionListener="#{categoriaBean.excluir}"
-						update=":mensagem :formListagem:tabela" >
-						<p:confirm header="Confirmação" message="Deseja excluir a categoria?"
-							icon="ui-icon-alert" />
+						update=":mensagem :formListagem:tabela">
+						<p:confirm header="Confirmação"
+							message="Deseja excluir a categoria?" icon="ui-icon-alert" />
 						<f:attribute name="categoriaSelecionada" value="#{categoria}" />
 					</p:commandButton>
 
-					<p:commandButton icon="ui-icon-pencil" actionListener="#{categoriaBean.editar}"
-						update=":mensagem :formCadastro:painel" oncomplete="PF('dialogo').show();">
+					<p:commandButton icon="ui-icon-pencil"
+						actionListener="#{categoriaBean.editar}"
+						update=":mensagem :formCadastro:painel"
+						oncomplete="PF('dialogo').show();">
 						<f:attribute name="categoriaSelecionada" value="#{categoria}" />
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
 
 				</p:column>
@@ -50,6 +59,7 @@
 				<p:commandButton value="Não" type="button"
 					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 			</p:confirmDialog>
+			
 		</p:panel>
 	</h:form>
 
@@ -58,9 +68,11 @@
 
 		<h:form id="formCadastro">
 			<h:panelGrid id="painel" columns="2">
-				<p:outputLabel value="Descrição:" />
-				<p:inputText maxlength="50" size="30"
-					value="#{categoriaBean.categoria.descricao}" />
+			
+				<p:outputLabel for="Descrição" value="Descrição:" />
+				<p:inputText id="Descrição" maxlength="50" size="30"
+					value="#{categoriaBean.categoria.descricao}" required="true"
+					requiredMessage="O campo 'Descrição é obrigatorio" />
 
 			</h:panelGrid>
 
