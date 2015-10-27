@@ -19,7 +19,9 @@
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
 						actionListener="#{produtoBean.novo}"
-						update=":formCadastro:painel :mensagem" />
+						update=":formCadastro:painel :mensagem">
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</f:facet>
 				<p:column headerText="Nome" sortBy="#{produto.nome}" filterBy="#{produto.nome}">
 					<h:outputText value="#{produto.nome}" />
@@ -28,7 +30,9 @@
 					<h:outputText value="#{produto.cor}" />
 				</p:column>
 				<p:column headerText="Preço de venda" sortBy="#{produto.precoVenda}" filterBy="#{produto.precoVenda}">
-					<h:outputText value="#{produto.precoVenda}" />
+					<h:outputText value="#{produto.precoVenda}">
+						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+					</h:outputText>
 				</p:column>
 				<p:column headerText="Descrição" sortBy="#{produto.descricao}" filterBy="#{produto.descricao}">
 					<h:outputText value="#{produto.descricao}" />
@@ -51,6 +55,7 @@
 						update=":formCadastro:painel :formListagem:tabela :mensagem"
 						oncomplete="PF('dialogo').show();">
 						<f:attribute name="produtoSelecionado" value="#{produto}" />
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
 					<p:commandButton icon="ui-icon-trash"
 						actionListener="#{produtoBean.excluir}"
@@ -71,39 +76,63 @@
 		</p:panel>
 	</h:form>
 
-
 	<p:dialog header="Produtos" widgetVar="dialogo" draggable="false"
 		resizable="false" modal="true" closable="false">
 		<h:form id="formCadastro">
 			<h:panelGrid id="painel" columns="2">
 				<p:outputLabel for="nome" value="Nome: " />
-				<p:inputText id="nome" maxlength="30" size="50" value="#{produtoBean.produto.nome}"
+				<p:inputText id="nome" maxlength="30" size="50"
+					value="#{produtoBean.produto.nome}"
 					required="true" requiredMessage="O campo 'Nome' é obrigatório!" />
+					
 				<p:outputLabel for="cor" value="Cor: " />
-				<p:inputText id="cor" maxlength="20" size="30" value="#{produtoBean.produto.cor}"
+				<p:inputText id="cor" maxlength="20" size="30"
+					value="#{produtoBean.produto.cor}"
 					required="true" requiredMessage="O campo 'Cor' é obrigatório!" />
-				<p:outputLabel for="precoVenda" value="Preço de venda " />
-				<p:inputText id="precoVenda" maxlength="8" size="10" value="#{produtoBean.produto.precoVenda}"
-					required="true" requiredMessage="O campo 'Preço de venda' é obrigatório!" />
-				<p:outputLabel for="descricao" value="Descrição " />
-				<p:inputText id="descricao" maxlength="200" size="50" value="#{produtoBean.produto.descricao}"
+					
+				<p:outputLabel for="precoVenda" value="Preço de venda: " />
+				<p:inputText id="precoVenda" maxlength="8" size="10"
+					value="#{produtoBean.produto.precoVenda}"
+					required="true" requiredMessage="O campo 'Preço de venda' é obrigatório!"
+					validatorMessage="Informe um valor entre 0,01 e 9999,99 para o campo 'Preço'!">
+					<f:validateDoubleRange minimum="0.01" maximum="9999.99" />
+					<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+				</p:inputText>
+					
+				<p:outputLabel for="descricao" value="Descrição: " />
+				<p:inputText id="descricao" maxlength="200" size="50"
+					value="#{produtoBean.produto.descricao}"
 					required="true" requiredMessage="O campo 'Descrição' é obrigatório!" />
-				<p:outputLabel for="qtd" value="Quantidade " />
-				<p:inputText id="qtd" maxlength="6" size="10" value="#{produtoBean.produto.qtd}"
-					required="true" requiredMessage="O campo 'Quantidade' é obrigatório!" />
-				<p:outputLabel for="qtdMinima" value="Quantidade Mínima " />
-				<p:inputText id="qtdMinima" maxlength="6" size="10" value="#{produtoBean.produto.qtdMinima}"
-					required="true" requiredMessage="O campo 'Quantidade Mínima' é obrigatório!" />
-				<p:outputLabel for="categoria" value="Categoria " />
-				<p:selectOneMenu id="categoria" filter="true" value="#{produtoBean.produto.categoria}"
+					
+				<p:outputLabel for="qtd" value="Quantidade: " />
+				<p:inputText id="qtd" maxlength="6" size="10"
+					value="#{produtoBean.produto.qtd}"
+					required="true" requiredMessage="O campo 'Quantidade' é obrigatório!"
+					validatorMessage="Informe um valor entre 0 e 1000 para o campo 'Quantidade'!">
+					<f:validateLongRange minimum="0" maximum="1000" />
+				</p:inputText>
+					
+				<p:outputLabel for="qtdMinima" value="Quantidade Mínima: " />
+				<p:inputText id="qtdMinima" maxlength="6" size="10"
+					value="#{produtoBean.produto.qtdMinima}"
+					required="true" requiredMessage="O campo 'Quantidade Mínima' é obrigatório!"
+					validatorMessage="Informe um valor entre 0 e 1000 para o campo 'Quantidade mínima'!">
+					<f:validateLongRange minimum="0" maximum="1000" />
+				</p:inputText>
+					
+				<p:outputLabel for="categoria" value="Categoria: " />
+				<p:selectOneMenu id="categoria" filter="true"
+					value="#{produtoBean.produto.categoria}"
 					converter="omnifaces.SelectItemsConverter"
 					required="true" requiredMessage="O campo 'Categoria' é obrigatório!">
 					<f:selectItem itemValue="" itemLabel="Selecione uma categoria!" />
 					<f:selectItems value="#{produtoBean.categorias}" var="categoria"
 						itemValue="#{categoria}" itemLabel="#{categoria.descricao}" />
 				</p:selectOneMenu>
-				<p:outputLabel id="linha" for="linha" value="Linha " />
-				<p:selectOneMenu filter="true" value="#{produtoBean.produto.linha}"
+				
+				<p:outputLabel id="linha" for="linha" value="Linha: " />
+				<p:selectOneMenu filter="true"
+					value="#{produtoBean.produto.linha}"
 					converter="omnifaces.SelectItemsConverter"
 					required="true" requiredMessage="O campo 'Linha' é obrigatório!">
 					<f:selectItem itemValue="" itemLabel="Selecione uma linha!" />
@@ -115,7 +144,7 @@
 				<p:commandButton value="Salvar"
 					actionListener="#{produtoBean.salvar}"
 					update=":formCadastro:painel :formListagem:tabela :mensagem" />
-				<p:commandButton value="Fechar" oncomplete="PF ('dialogo').hide();" />
+				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</h:panelGrid>
 		</h:form>
 	</p:dialog>
