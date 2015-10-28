@@ -8,22 +8,20 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Status</title>
 </h:head>
-<h:body>
+<h:body> 
 	<p:growl id="mensagem" />
-
+	
 	<h:form id="formListagem">
 		<p:panel header="Status - Listagem">
 			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
-				paginator="true" value="#{statusBean.statuss}" var="status" rows="6">
-
+				paginator="true" value="#{statusBean.statusLista}" var="status"
+				rows="10">
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
-						actionListener="#{statusBean.novo()}"
-						update=":formCadastro:painel">
-						<f:actionListener
-							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						actionListener="#{statusBean.novo}"
+						update=":formCadastro:painel :mensagem">
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
-
 				</f:facet>
 
 				<p:column headerText="Descrição" sortBy="#{status.descricao}"
@@ -32,27 +30,23 @@
 				</p:column>
 
 				<p:column headerText="Opções">
-
-					<p:commandButton icon="ui-icon-trash"
-						actionListener="#{statusBean.excluir}"
-						update=":mensagem :formListagem:tabela">
-						<p:confirm header="Confirmação" message="Deseja excluir o status?"
-							icon="ui-icon-alert" />
-						<f:attribute name="statusSelecionado" value="#{status}" />
-					</p:commandButton>
-
 					<p:commandButton icon="ui-icon-pencil"
 						actionListener="#{statusBean.editar}"
-						update=":mensagem :formCadastro:painel"
+						update=":formCadastro:painel :formListagem:tabela :mensagem"
 						oncomplete="PF('dialogo').show();">
 						<f:attribute name="statusSelecionado" value="#{status}" />
-						<f:actionListener
-							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
-
+					<p:commandButton icon="ui-icon-trash"
+						actionListener="#{statusBean.excluir}"
+						update=":formListagem:tabela :mensagem" >
+						<p:confirm header="Confirmação" icon="ui-icon-alert"
+							message="Deseja excluir o status?" />
+						<f:attribute name="statusSelecionado" value="#{status}" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
-
+			
 			<p:confirmDialog global="true">
 				<p:commandButton value="Sim" type="button"
 					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
@@ -61,24 +55,20 @@
 			</p:confirmDialog>
 		</p:panel>
 	</h:form>
-
+	
 	<p:dialog header="Status - Cadastro" widgetVar="dialogo"
 		draggable="false" resizable="false" modal="true" closable="false">
-
 		<h:form id="formCadastro">
 			<h:panelGrid id="painel" columns="2">
-				
-				<p:outputLabel for="Descrição" value="Descrição:" />
-				<p:inputText id="Descrição" maxlength="50" size="30"
-					value="#{statusBean.status.descricao}" required="true"
-					requiredMessage="O campo 'Descrição é obrigatorio" />
-
+				<p:outputLabel for="descricao" value="Descrição: " />
+				<p:inputText id="descricao" maxlength="50" size="30"
+					value="#{statusBean.status.descricao}"
+					required="true" requiredMessage="O campo 'Status' é obrigatório!" />
 			</h:panelGrid>
-
+			
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar"
-					actionListener="#{statusBean.salvar}"
-					update=":mensagem :formCadastro:painel :formListagem:tabela" />
+				<p:commandButton value="Salvar" actionListener="#{statusBean.salvar}"
+					update=":formCadastro:painel :formListagem:tabela :mensagem" />
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</h:panelGrid>
 		</h:form>

@@ -1,4 +1,4 @@
-package br.com.topmake.Bean;
+package br.com.topmake.bean;
 
 import javax.faces.event.ActionEvent;
 import java.io.Serializable;

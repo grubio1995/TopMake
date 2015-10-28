@@ -1,4 +1,4 @@
-package br.com.topmake.Bean;
+package br.com.topmake.bean;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,8 +14,17 @@ import br.com.topmake.domain.Linha;
 @ManagedBean
 @ViewScoped
 public class LinhaBean implements Serializable {
+	
 	private Linha linha;
 	private List<Linha> linhas;
+	
+	public List<Linha> getLinhas() {
+		return linhas;
+	}
+	
+	public void setLinhas(List<Linha> linhas) {
+		this.linhas = linhas;
+	}
 
 	public Linha getLinha() {
 		return linha;
@@ -24,66 +33,56 @@ public class LinhaBean implements Serializable {
 	public void setLinha(Linha linha) {
 		this.linha = linha;
 	}
-
-	public List<Linha> getLinhas() {
-		return linhas;
-	}
-
-	public void setLinhas(List<Linha> linhas) {
-		this.linhas = linhas;
-	}
-
-	public void novo() {
-		linha = new Linha();
-	}
 	
 	@PostConstruct
 	public void listar() {
 		try {
 			LinhaDAO linhaDAO = new LinhaDAO();
 			linhas = linhaDAO.listar();
-
-		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Ocorreu um erro ao tentar listar as linhas!!!");
+		}
+		catch (RuntimeException erro) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar listar as linhas!");
 			erro.printStackTrace();
 		}
 	}
-
+	
+	public void novo() {
+		linha = new Linha();
+	}
+	
 	public void salvar() {
 		try {
 			LinhaDAO linhaDAO = new LinhaDAO();
 			linhaDAO.merge(linha);
-
-			linha = new Linha();
-			linhas = linhaDAO.listar();
-
-			Messages.addGlobalInfo("A linha foi salva com sucesso!");
-		} catch (RuntimeException erro) {
+			Messages.addGlobalInfo("Linha salva com sucesso!");
+		}
+		catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar salvar a linha!");
 			erro.printStackTrace();
 		}
+		
+		novo();
+		listar();
 	}
-	
-	
+
 	public void excluir(ActionEvent evento) {
 		try {
 			linha = (Linha) evento.getComponent().getAttributes().get("linhaSelecionada");
 			
 			LinhaDAO linhaDAO = new LinhaDAO();
 			linhaDAO.excluir(linha);
-
-			linhas = linhaDAO.listar();
-
-			Messages.addGlobalInfo("Linha removida com sucesso ");
-		} catch (RuntimeException erro) {
-			Messages.addGlobalInfo("Ocorreu um erro ao tentar remover a linha" + erro);
+			
+			Messages.addGlobalInfo("Linha removida com sucesso!");
+		}
+		catch (RuntimeException erro) {
+			Messages.addGlobalInfo("Ocorreu um erro ao tentar remover a linha!");
 			erro.printStackTrace();
 		}
+		
+		listar();
 	}
-
-	public void Editar(ActionEvent evento) {
+	
+	public void editar(ActionEvent evento) {
 		linha = (Linha) evento.getComponent().getAttributes().get("linhaSelecionada");
-		Messages.addGlobalInfo("" + linha.getDescricao());
-
 	}
 }

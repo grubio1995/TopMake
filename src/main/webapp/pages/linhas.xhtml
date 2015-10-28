@@ -6,25 +6,22 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Linhas</title>
+	<title>Linha</title>
 </h:head>
-<h:body>
+<h:body> 
 	<p:growl id="mensagem" />
-
+	
 	<h:form id="formListagem">
 		<p:panel header="Linha - Listagem">
 			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
-				paginator="true" value="#{linhaBean.linhas}" var="linha" rows="6">
-				
+				paginator="true" value="#{linhaBean.linhas}" var="linha"
+				rows="10">
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
 						actionListener="#{linhaBean.novo}"
-						update=":mensagem :formCadastro:painel :formListagem:tabela" >
-						<f:actionListener
-							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						update=":formCadastro:painel :mensagem">
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
-						
-				
 				</f:facet>
 
 				<p:column headerText="Descrição" sortBy="#{linha.descricao}"
@@ -33,25 +30,23 @@
 				</p:column>
 
 				<p:column headerText="Opções">
-
+					<p:commandButton icon="ui-icon-pencil"
+						actionListener="#{linhaBean.editar}"
+						update=":formCadastro:painel :formListagem:tabela :mensagem"
+						oncomplete="PF('dialogo').show();">
+						<f:attribute name="linhaSelecionada" value="#{linha}" />
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 					<p:commandButton icon="ui-icon-trash"
 						actionListener="#{linhaBean.excluir}"
-						update=":mensagem :formListagem:tabela" >
-						<p:confirm header="Confirmação" message="Deseja excluir a linha?"
-							icon="ui-icon-alert" />
+						update=":formListagem:tabela :mensagem" >
+						<p:confirm header="Confirmação" icon="ui-icon-alert"
+							message="Deseja excluir a linha?" />
 						<f:attribute name="linhaSelecionada" value="#{linha}" />
 					</p:commandButton>
-
-					<p:commandButton icon="ui-icon-pencil" actionListener="#{linhaBean.Editar}"
-						update=":mensagem :formCadastro:painel :formListagem:tabela" oncomplete="PF('dialogo').show();">
-						<f:attribute name="linhaSelecionada" value="#{linha}" />
-					<f:actionListener
-							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
-					</p:commandButton>
-
 				</p:column>
 			</p:dataTable>
-
+			
 			<p:confirmDialog global="true">
 				<p:commandButton value="Sim" type="button"
 					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
@@ -60,23 +55,20 @@
 			</p:confirmDialog>
 		</p:panel>
 	</h:form>
-
-	<p:dialog header="Linhas - Cadastro" widgetVar="dialogo"
+	
+	<p:dialog header="Linha - Cadastro" widgetVar="dialogo"
 		draggable="false" resizable="false" modal="true" closable="false">
-		
 		<h:form id="formCadastro">
 			<h:panelGrid id="painel" columns="2">
-				<p:outputLabel for="Descrição" value="Descrição:" />
-				<p:inputText id="Descrição" maxlength="50" size="30"
-					value="#{linhaBean.linha.descricao}" required="true"
-					requiredMessage="O campo 'Descrição é obrigatorio" />
-
+				<p:outputLabel for="descricao" value="Descrição: " />
+				<p:inputText id="descricao" maxlength="50" size="30"
+					value="#{linhaBean.linha.descricao}"
+					required="true" requiredMessage="O campo 'Linha' é obrigatório!" />
 			</h:panelGrid>
-
+			
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar"
-					actionListener="#{linhaBean.salvar()}"
-					update=":mensagem :formCadastro:painel :formListagem:tabela" />
+				<p:commandButton value="Salvar" actionListener="#{linhaBean.salvar}"
+					update=":formCadastro:painel :formListagem:tabela :mensagem" />
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</h:panelGrid>
 		</h:form>

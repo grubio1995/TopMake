@@ -1,4 +1,4 @@
-package br.com.topmake.Bean;
+package br.com.topmake.bean;
 
 import java.io.Serializable;
 import java.util.List;
