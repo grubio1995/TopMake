@@ -33,7 +33,7 @@ public class Cliente extends GenericDomain {
 	@Column(nullable = false)
 	private Character sexo;
 	
-	@Column(length = 11, nullable = false)
+	@Column(length = 14, nullable = false)
 	private String cpf;
 	
 	@Column(length = 15, nullable = false)

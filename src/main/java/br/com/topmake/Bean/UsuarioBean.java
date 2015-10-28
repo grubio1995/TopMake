@@ -14,18 +14,18 @@ import br.com.topmake.domain.Usuario;
 @ManagedBean
 @ViewScoped
 public class UsuarioBean implements Serializable {
-	
+
 	private Usuario usuario;
-	private List<Usuario>usuarios;
-	
+	private List<Usuario> usuarios;
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
-	
+
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
 	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}
@@ -37,15 +37,17 @@ public class UsuarioBean implements Serializable {
 	public void salvar() {
 		try {
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			
-			usuario.setTipoUsuario('C'); // fixo pois os usuários cadastrados são somente clientes, só haverá uma revendedora que será a Carol
+
+			usuario.setTipoUsuario('C'); // fixo pois os usuários cadastrados
+											// são somente clientes, só haverá
+											// uma revendedora que será a Carol
 			usuarioDAO.merge(usuario);
-			
+
 			usuario = new Usuario();
 			usuarios = usuarioDAO.listar();
 
 			Messages.addGlobalInfo("Usuário salvo com sucesso");
-			
+
 			novo();
 
 		} catch (RuntimeException erro) {
@@ -53,28 +55,24 @@ public class UsuarioBean implements Serializable {
 			erro.printStackTrace();
 		}
 	}
-	
+
 	public void novo() {
 		usuario = new Usuario();
 	}
-	
+
 	@PostConstruct
-	public void listar(){
-		
-		try{
-			
+	public void listar() {
+		try {
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
 			usuarios = usuarioDAO.listar();
-			
-		}catch(RuntimeException erro){
+		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os usuários");
 		}
 	}
-	
-	public void excluir(ActionEvent evento){
-		
-		try{
-			
+
+	public void excluir(ActionEvent evento) {
+
+		try {
 			usuario = (Usuario) evento.getComponent().getAttributes().get("usuarioSelecionado");
 
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -84,23 +82,26 @@ public class UsuarioBean implements Serializable {
 			usuarios = usuarioDAO.listar();
 
 			Messages.addGlobalInfo("Usuário excluído com sucesso");
-			
-		}catch(RuntimeException erro){
+
+		}
+		catch (RuntimeException erro) {
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar remover o usuário");
 			erro.printStackTrace();
 		}
 	}
-	
-	public void editar(ActionEvent evento){
 
-		try{
+	public void editar(ActionEvent evento) {
 
+		try {
 			usuario = (Usuario) evento.getComponent().getAttributes().get("usuarioSelecionado");
 
-		}catch(RuntimeException erro){
+		}
+		catch (RuntimeException erro) {
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar editar o usuário");
 			erro.printStackTrace();
 		}
+		
+		listar();
 	}
-	
+
 }

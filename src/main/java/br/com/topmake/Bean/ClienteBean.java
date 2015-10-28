@@ -12,10 +12,6 @@ import br.com.topmake.dao.UsuarioDAO;
 import br.com.topmake.domain.Cliente;
 import br.com.topmake.domain.Usuario;
 
-/**
- * @author Gabriel Rubio
- *
- */
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
@@ -25,57 +21,57 @@ public class ClienteBean implements Serializable {
 	private List<Cliente> clientes;
 	private List<Usuario> usuarios;
 
-	public void salvar(){
-		
-		try{
-			
+	public void salvar() {
+
+		try {
+
 			ClienteDAO clienteDAO = new ClienteDAO();
 			clienteDAO.merge(cliente);
-			
+
 			cliente = new Cliente();
-			
+
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
 			usuarios = usuarioDAO.listar();
-			
+
 			clientes = clienteDAO.listar();
-			
+
 			Messages.addGlobalInfo("Cliente salvo com sucesso");
-			
-		}catch (RuntimeException erro){
+
+		} catch (RuntimeException erro) {
 			Messages.addFlashGlobalError("Ocorreu um erro ao salvar um novo cliente");
 		}
 	}
-	
-	@PostConstruct
-	public void listar(){
 
-		try{
-			
+	@PostConstruct
+	public void listar() {
+
+		try {
+
 			ClienteDAO clienteDAO = new ClienteDAO();
 			clientes = clienteDAO.listar();
-			
-		}catch(RuntimeException erro){
+
+		} catch (RuntimeException erro) {
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar listar os clientes");
 			erro.printStackTrace();
 		}
 	}
-	
-	public void novo(){
-		
-		try{
+
+	public void novo() {
+
+		try {
 			cliente = new Cliente();
 
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
 			usuarios = usuarioDAO.listar();
 
-		}catch(RuntimeException erro){
-			Messages.addGlobalError("Ocorreu um erro ao tentar gerar um novo cliente");
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar salvar o cliente!");
 		}
 	}
-	
-	public void excluir(ActionEvent evento){
-		
-		try{
+
+	public void excluir(ActionEvent evento) {
+
+		try {
 			cliente = (Cliente) evento.getComponent().getAttributes().get("clienteSelecionado");
 
 			ClienteDAO clienteDAO = new ClienteDAO();
@@ -84,31 +80,33 @@ public class ClienteBean implements Serializable {
 			cliente = new Cliente();
 			clientes = clienteDAO.listar();
 
-			Messages.addGlobalInfo("Cliente excluída com sucesso");
+			Messages.addGlobalInfo("Cliente excluído com sucesso!");
 
-		}catch(RuntimeException erro){
+		} catch (RuntimeException erro) {
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar remover um cliente");
 			erro.printStackTrace();
 		}
 
 	}
-	
-	public void editar(ActionEvent evento){
-		try{
+
+	public void editar(ActionEvent evento) {
+		try {
 
 			cliente = (Cliente) evento.getComponent().getAttributes().get("clienteSelecionado");
 
-			
 			ClienteDAO clienteDAO = new ClienteDAO();
 			clientes = clienteDAO.listar();
 			
-		}catch(RuntimeException erro){
+			UsuarioDAO usuarioDAO = new UsuarioDAO();
+			usuarios = usuarioDAO.listar();			
+
+		} catch (RuntimeException erro) {
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar selecionar um cliente");
 			erro.printStackTrace();
 		}
-		 
+
 	}
-	
+
 	@PostConstruct
 	public List<Cliente> getClientes() {
 		return clientes;
