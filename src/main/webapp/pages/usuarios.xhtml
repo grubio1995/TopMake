@@ -6,56 +6,59 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Usuario</title>
+	<title>Usuários</title>
 </h:head>
 <h:body>
 	<p:growl id="mensagem" />
 
 	<h:form id="formListagem">
 		<p:panel header="Usuário - Listagem">
-			<p:dataTable id="tabela" emptyMessage="Nenhum registro escontrado." 
-			paginator="true" value="#{usuarioBean.usuarios}" var="usuario" rows="5">
-				
+			<p:dataTable id="tabela" emptyMessage="Nenhum registro escontrado."
+				paginator="true" value="#{usuarioBean.usuarios}" var="usuario"
+				rows="10">
+
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
-						actionListener="#{usuarioBean.novo()}" update=":formCadastro:painel" />
-					</f:facet>
-					
-				<p:column headerText="Nome: " sortBy="#{usuario.nome}"
+						actionListener="#{usuarioBean.novo}"
+						update=":formCadastro:painel :mensagem">
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
+				</f:facet>
+
+				<p:column headerText="Nome" sortBy="#{usuario.nome}"
 					filterBy="#{usuario.nome}">
 					<h:outputText value="#{usuario.nome}" />
 				</p:column>
-				
-				<p:column headerText="Email: ">
+
+				<p:column headerText="E-mail" sortBy="#{usuario.email}"
+					filterBy="#{usuario.email}">
 					<h:outputText value="#{usuario.email}" />
 				</p:column>
-
-				<p:column headerText="Login: " sortBy="#{usuario.email}"
-				filterBy="#{usuario.login}">
+				
+				<p:column headerText="Login" sortBy="#{usuario.login}"
+					filterBy="#{usuario.login}">
 					<h:outputText value="#{usuario.login}" />
 				</p:column>
 
-				<p:column headerText="Senha: ">
-					<h:outputText value="#{usuario.senha}" />
-				</p:column>
-
-				<p:column headerText="Opções: ">
-					<p:commandButton icon="ui-icon-trash"
-						actionListener="#{usuarioBean.excluir}"
-						update=":mensagem :formListagem:tabela">
-						<p:confirm header="Confirmação"
-							message="Deseja excluir o usuário ?" icon="ui-icon-alert" />
-						<f:attribute name="usuarioSelecionado" value="#{usuario}" />
-					</p:commandButton>
-
+				<p:column headerText="Opções">
 					<p:commandButton icon="ui-icon-pencil"
 						actionListener="#{usuarioBean.editar}"
-						update=" :formCadastro:painel" oncomplete="PF('dialogo').show();">
+						update=":formCadastro:painel :formListagem:tabela :mensagem"
+						oncomplete="PF('dialogo').show();">
+						<f:attribute name="usuarioSelecionado" value="#{usuario}" />
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
+					<p:commandButton icon="ui-icon-trash"
+						actionListener="#{usuarioBean.excluir}"
+						update=":formListagem:tabela :mensagem">
+						<p:confirm header="Confirmação" icon="ui-icon-alert"
+							message="Deseja excluir o usuário?" />
 						<f:attribute name="usuarioSelecionado" value="#{usuario}" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
-			
+
 			<p:confirmDialog global="true">
 				<p:commandButton value="Sim" type="button"
 					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
@@ -64,29 +67,31 @@
 			</p:confirmDialog>
 		</p:panel>
 	</h:form>
-
-
-	<p:dialog header="Usuário - Cadastro " widgetVar="dialogo"
+	
+	<p:dialog header="Usuários - Cadastro " widgetVar="dialogo"
 		draggable="false" resizable="false" modal="true" closable="false">
 		<h:form id="formCadastro">
 			<h:panelGrid id="painel" columns="2">
-				<p:outputLabel value="Nome:" />
-				<p:inputText maxlength="100" size="30" 
-				value="#{usuarioBean.usuario.nome}"/>
+				<p:outputLabel for="nome" value="Nome: " />
+				<p:inputText id="nome" maxlength="100" size="30"
+					value="#{usuarioBean.usuario.nome}" required="true"
+					requiredMessage="O campo 'Nome' é obrigatório!" />
 				
-				<p:outputLabel value="Email: " />
-				<p:inputText maxlength="50" size="30" 
-				value="#{usuarioBean.usuario.email}"/>
+				<p:outputLabel for="email" value="E-mail: " />
+				<p:inputText id="email" maxlength="50" size="30"
+					value="#{usuarioBean.usuario.email}" required="true"
+					requiredMessage="O campo 'Email' é obrigatório!" />
 				
-				<p:outputLabel value="Login: " />
-				<p:inputText maxlength="20" size="20" 
-				value="#{usuarioBean.usuario.login}"/>
-
-				<p:outputLabel value="Senha: " />
-				<p:inputText maxlength="32" size="35" 
-				value="#{usuarioBean.usuario.senha}"/>
+				<p:outputLabel for="login" value="Login: " />
+				<p:inputText id="login" maxlength="20" size="20"
+					value="#{usuarioBean.usuario.login}" required="true"
+					requiredMessage="O campo 'Login' é obrigatório!" />
+				
+				<p:outputLabel for="senha" value="Senha: " />
+				<p:password id="senha" maxlength="32" size="35"
+					value="#{usuarioBean.usuario.senha}" required="true"
+					requiredMessage="O campo 'Senha' é obrigatório!" />
 			</h:panelGrid>
-
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar"
 					actionListener="#{usuarioBean.salvar}"

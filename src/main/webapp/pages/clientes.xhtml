@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Cliente</title>
+	<title>Clientes</title>
 </h:head>
 <h:body>
 	<p:growl id="mensagem" />
@@ -16,13 +16,16 @@
 
 			<p:dataTable id="tabela" emptyMessage="Nenhum registro escontrado."
 				paginator="true" value="#{clienteBean.clientes}" var="cliente"
-				rows="5">
+				rows="10">
 
 				<f:facet name="header">
 					<p:commandButton value="Novo"
-						actionListener="#{clienteBean.novo()}"
+						actionListener="#{clienteBean.novo}"
 						oncomplete="PF('dialogo').show()"
-						update=":mensagem :formCadastro:painel" />
+						update=":mensagem :formCadastro:painel">
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</f:facet>
 
 				<p:column headerText="Cidade" filterBy="#{cliente.cidade}"
@@ -51,21 +54,20 @@
 				</p:column>
 
 				<p:column headerText="Opções">
-					<p:commandButton icon="ui-icon-trash"
-						actionListener="#{clienteBean.excluir}"
-						update=":mensagem :formListagem:tabela">
-						<p:confirm header="Confirmação"
-							message="Deseja excluir o cliente ?" icon="ui-icon-alert" />
-						<f:attribute name="clienteSelecionado" value="#{cliente}" />
-					</p:commandButton>
-
 					<p:commandButton icon="ui-icon-pencil"
 						actionListener="#{clienteBean.editar}"
-						update=":mensagem :formCadastro:painel"
+						update=":formCadastro:painel :formListagem:tabela :mensagem"
 						oncomplete="PF('dialogo').show();">
 						<f:attribute name="clienteSelecionado" value="#{cliente}" />
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
-
+					<p:commandButton icon="ui-icon-trash"
+						actionListener="#{clienteBean.excluir}"
+						update=":formListagem:tabela :mensagem">
+						<p:confirm header="Confirmação" icon="ui-icon-alert"
+							message="Deseja excluir o cliente?" />
+						<f:attribute name="clienteSelecionado" value="#{cliente}" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 
@@ -85,55 +87,68 @@
 		<h:form id="formCadastro">
 			<h:panelGrid id="painel" columns="2">
 
-				<p:outputLabel value="Bairro: " />
-				<p:inputText maxlength="50" size="30"
-					value="#{clienteBean.cliente.bairro}" />
+				<p:outputLabel for="bairro" value="Bairro: " />
+				<p:inputText id="bairro" maxlength="50" size="30"
+					value="#{clienteBean.cliente.bairro}" required="true"
+					requiredMessage="O campo 'Bairro' é obrigatório!" />
 
-				<p:outputLabel value="CEP: " />
-				<p:inputText maxlength="10" size="20"
-					value="#{clienteBean.cliente.cep}" />
+				<p:outputLabel for="cep" value="CEP: " />
+				<p:inputMask id="cep" mask="99.999-999" size="20"
+					value="#{clienteBean.cliente.cep}" required="true"
+					requiredMessage="O campo 'CEP' é obrigatório!" />
 
-				<p:outputLabel value="Cidade: " />
-				<p:inputText maxlength="30" size="40"
-					value="#{clienteBean.cliente.cidade}" />
+				<p:outputLabel for="cidade" value="Cidade: " />
+				<p:inputText id="cidade" maxlength="30" size="40"
+					value="#{clienteBean.cliente.cidade}" required="true"
+					requiredMessage="O campo 'Cidade' é obrigatório!" />
 
-				<p:outputLabel value="Estado: " />
-				<p:inputText maxlength="2" size="4"
-					value="#{clienteBean.cliente.estado}" />
+				<p:outputLabel for="estado" value="Estado: " />
+				<p:inputText id="estado" maxlength="2" size="4"
+					value="#{clienteBean.cliente.estado}" required="true"
+					requiredMessage="O campo 'Estado' é obrigatório!" />
 
-				<p:outputLabel value="Telefone: " />
-				<p:inputText maxlength="15" size="30"
-					value="#{clienteBean.cliente.telefone}" />
+				<p:outputLabel for="telefone" value="Telefone: " />
+				<p:inputMask id="telefone" mask="(99) 9999-9999" size="30"
+					value="#{clienteBean.cliente.telefone}" required="true"
+					requiredMessage="O campo 'Telefone' é obrigatório!" />
 
-				<p:outputLabel value="Celular: " />
-				<p:inputText maxlength="15" size="30"
-					value="#{clienteBean.cliente.celular}" />
+				<p:outputLabel for="celular" value="Celular: " />
+				<p:inputMask id="celular" mask="(99) 99999-999?9" size="30"
+					value="#{clienteBean.cliente.celular}" required="true"
+					requiredMessage="O campo 'Celular' é obrigatório!" />
 
-				<p:outputLabel value="Sexo:" />
-				<p:selectOneRadio value="#{clienteBean.cliente.sexo}">
+				<p:outputLabel for="sexo" value="Sexo:" />
+				<p:selectOneRadio id="sexo" value="#{clienteBean.cliente.sexo}"
+					required="true" requiredMessage="O campo 'Sexo' é obrigatório!">
 					<f:selectItem itemValue="M" itemLabel="Masculino" />
 					<f:selectItem itemValue="F" itemLabel="Feminino" />
 				</p:selectOneRadio>
 
-				<p:outputLabel value="CPF: " />
-				<p:inputText maxlength="11" size="20"
-					value="#{clienteBean.cliente.cpf}" />
+				<p:outputLabel for="cpf" value="CPF: " />
+				<p:inputMask id="cpf" mask="999.999.999-99" size="20"
+					value="#{clienteBean.cliente.cpf}" required="true"
+					requiredMessage="O campo 'CPF' é obrigatório!" />
 
-				<p:outputLabel value="RG: " />
-				<p:inputText maxlength="11" size="20"
-					value="#{clienteBean.cliente.rg}" />
-				
-			<p:outputLabel for="dataNascimento" value="Data de Nascimentoa:" />
+				<p:outputLabel for="rg" value="RG: " />
+				<p:inputText id="rg" maxlength="11" size="20"
+					value="#{clienteBean.cliente.rg}" required="true"
+					requiredMessage="O campo 'RG' é obrigatório!" />
+
+				<p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
 				<p:calendar id="dataNascimento"
-					value="#{clienteBean.cliente.dataNascimento}" size="10" />
+					value="#{clienteBean.cliente.dataNascimento}" size="10"
+					required="true"
+					requiredMessage="O campo 'Data de Nascimento' é obrigatório!" />
 
 
-				<p:outputLabel value="Estado Civil: " />
-				<p:inputText maxlength="20" size="20"
-					value="#{clienteBean.cliente.estadoCivil}" />
+				<p:outputLabel for="estadoCivil" value="Estado Civil: " />
+				<p:inputText id="estadoCivil" maxlength="20" size="20"
+					value="#{clienteBean.cliente.estadoCivil}" required="true"
+					requiredMessage="O campo 'Estado Civil' é obrigatório!" />
 
-				<p:outputLabel value="Usuário: " />
-				<p:selectOneMenu filter="true"
+				<p:outputLabel for="usuario" value="Usuário: " />
+				<p:selectOneMenu id="usuario" required="true"
+					requiredMessage="O campo 'Usuário' é obrigatório!" filter="true"
 					value="#{clienteBean.cliente.usuario}"
 					converter="omnifaces.SelectItemsConverter">
 					<f:selectItem noSelectionOption="true"

@@ -38,7 +38,6 @@ public class ProdutoBean implements Serializable {
 		try {
 			ProdutoDAO produtoDAO = new ProdutoDAO();
 			produtos = produtoDAO.listar();
-			
 		}
 		catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os produtos!");
@@ -61,7 +60,6 @@ public class ProdutoBean implements Serializable {
 		try {
 			LinhaDAO linhaDAO = new LinhaDAO();
 			linhas = linhaDAO.listar();
-			
 		}
 		catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar as linhas!");
