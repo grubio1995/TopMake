@@ -22,7 +22,7 @@
     </servlet-mapping>
     <!-- Carregamento do Hibernate -->
     <listener>
-    	<listener-class>br.com.erick.drogaria.util.HibernateContexto</listener-class>
+    	<listener-class>br.com.topmake.util.HibernateContexto</listener-class>
     </listener>
     
 </web-app>
