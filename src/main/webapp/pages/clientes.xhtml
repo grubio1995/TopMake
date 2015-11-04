@@ -7,6 +7,7 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Clientes</title>
+	<h:outputScript library="js" name="scripts.js" />
 </h:head>
 <h:body>
 	<p:growl id="mensagem" />
@@ -28,6 +29,11 @@
 					</p:commandButton>
 				</f:facet>
 
+				<p:column headerText="Usuário" filterBy="#{cliente.usuario.login}"
+					sortBy="#{cliente.usuario.login}">
+					<h:outputText value="#{cliente.usuario.login}" />
+				</p:column>
+
 				<p:column headerText="Cidade" filterBy="#{cliente.cidade}"
 					sortBy="#{cliente.cidade}">
 					<h:outputText value="#{cliente.cidade}" />
@@ -46,11 +52,6 @@
 				<p:column headerText="CPF" filterBy="#{cliente.cpf}"
 					sortBy="#{cliente.cpf}">
 					<h:outputText value="#{cliente.cpf}" />
-				</p:column>
-
-				<p:column headerText="Usuário" filterBy="#{cliente.usuario.login}"
-					sortBy="#{cliente.usuario.login}">
-					<h:outputText value="#{cliente.usuario.login}" />
 				</p:column>
 
 				<p:column headerText="Opções">
@@ -133,12 +134,13 @@
 				<p:inputText id="rg" maxlength="11" size="20"
 					value="#{clienteBean.cliente.rg}" required="true"
 					requiredMessage="O campo 'RG' é obrigatório!" />
-
+				
 				<p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
 				<p:calendar id="dataNascimento"
 					value="#{clienteBean.cliente.dataNascimento}" size="10"
 					required="true"
-					requiredMessage="O campo 'Data de Nascimento' é obrigatório!" />
+					requiredMessage="O campo 'Data de Nascimento' é obrigatório!"
+					locale="pt_BR" />
 
 
 				<p:outputLabel for="estadoCivil" value="Estado Civil: " />
