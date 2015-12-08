@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Produtos</title>
-</h:head>
-<h:body>
-	<p:growl id="mensagem" />
-	
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/modelo.xhtml">
+
+<ui:define name="conteudo">
 	<h:form id="formListagem">
 		<p:panel header="Produtos - Listagem">
 			<p:dataTable id="tabela" emptyMessage="Nenhum registro escontrado."
-				paginator="true" value="#{produtoBean.produtos}" var="produto"
+				paginator="true" value="#{ProdutoBean.produtos}" var="produto"
 				rows="10">
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
@@ -140,13 +137,14 @@
 						itemValue="#{linha}" itemLabel="#{linha.descricao}" />
 				</p:selectOneMenu>
 			</h:panelGrid>
+			
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar"
-					actionListener="#{produtoBean.salvar}"
+					actionListener="#{ProdutoBean.salvar}"
 					update=":formCadastro:painel :formListagem:tabela :mensagem" />
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</h:panelGrid>
 		</h:form>
 	</p:dialog>
-</h:body>
-</html>
+</ui:define>
+</ui:composition>
